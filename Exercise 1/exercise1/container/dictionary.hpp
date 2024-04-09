@@ -8,60 +8,53 @@
 
 /* ************************************************************************** */
 
-namespace lasd {
+namespace lasd
+{
 
-/* ************************************************************************** */
+  /* ************************************************************************** */
 
-template <typename Data>
-class DictionaryContainer {
-  // Must extend TestableContainer<Data>
+  template <typename Data>
+  class DictionaryContainer : TestableContainer<Data>
+  {
 
-private:
+  private:
+  protected:
+  public:
+    // Destructor
+    virtual ~DictionaryContainer() = default;
 
-  // ...
+    /* ************************************************************************ */
 
-protected:
+    // Copy assignment
+    DictionaryContainer &operator=(const DictionaryContainer &) = delete;
 
-  // ...
+    // Move assignment
+    DictionaryContainer &operator=(DictionaryContainer &&) noexcept = delete;
 
-public:
+    /* ************************************************************************ */
 
-  // Destructor
-  // ~DictionaryContainer() specifiers
+    // Comparison operators
+    bool operator==(const DictionaryContainer &) const noexcept = delete;
+    bool operator!=(const DictionaryContainer &) const noexcept = delete;
 
-  /* ************************************************************************ */
+    /* ************************************************************************ */
 
-  // Copy assignment
-  // type operator=(argument); // Copy assignment of abstract types is not possible.
+    // Specific member functions
 
-  // Move assignment
-  // type operator=(argument); // Move assignment of abstract types is not possible.
+    virtual bool Insert(const Data &) const; // Copy of the value
+    virtual bool Insert(Data &&) const;      // Move of the value
+    virtual bool Remove(Data &&) const;
 
-  /* ************************************************************************ */
+    virtual bool InsertAll(const TraversableContainer<Data> &) const; // Copy of the value; From TraversableContainer; True if all are inserted
+    virtual bool InsertAll(MappableContainer<Data> &&) const;         // Move of the value; From MappableContainer; True if all are inserted
+    virtual bool RemoveAll(TraversableContainer<Data> &&) const;      // From TraversableContainer; True if all are removed
 
-  // Comparison operators
-  // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
-  // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
+    virtual bool InsertSome(const TraversableContainer<Data> &) const; // Copy of the value; From TraversableContainer; True if some is inserted
+    virtual bool InsertSome(MappableContainer<Data> &&) const;         // Move of the value; From MappableContainer; True if some is inserted
+    virtual bool RemoveSome(TraversableContainer<Data> &&) const;      // From TraversableContainer; True if some is removed
+  };
 
-  /* ************************************************************************ */
-
-  // Specific member functions
-
-  // type Insert(argument) specifiers; // Copy of the value
-  // type Insert(argument) specifiers; // Move of the value
-  // type Remove(argument) specifiers;
-
-  // type InsertAll(argument) specifiers; // Copy of the value; From TraversableContainer; True if all are inserted
-  // type InsertAll(argument) specifiers; // Move of the value; From MappableContainer; True if all are inserted
-  // type RemoveAll(argument) specifiers; // From TraversableContainer; True if all are removed
-
-  // type InsertSome(argument) specifiers; // Copy of the value; From TraversableContainer; True if some is inserted
-  // type InsertSome(argument) specifiers; // Move of the value; From MappableContainer; True if some is inserted
-  // type RemoveSome(argument) specifiers; // From TraversableContainer; True if some is removed
-
-};
-
-/* ************************************************************************** */
+  /* ************************************************************************** */
 
 }
 

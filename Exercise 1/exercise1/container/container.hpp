@@ -17,7 +17,6 @@ namespace lasd
 
   protected:
     unsigned long size = 0;
-    Container() = default;
 
   public:
     // Destructor
