@@ -41,9 +41,9 @@ namespace lasd
 
     // Specific member functions
 
-    virtual bool Insert(const Data &) const; // Copy of the value
-    virtual bool Insert(Data &&) const;      // Move of the value
-    virtual bool Remove(Data &&) const;
+    virtual bool Insert(const Data &) const = 0; // Copy of the value
+    virtual bool Insert(Data &&) const = 0;      // Move of the value
+    virtual bool Remove(Data &&) const = 0;
 
     virtual bool InsertAll(const TraversableContainer<Data> &) const; // Copy of the value; From TraversableContainer; True if all are inserted
     virtual bool InsertAll(MappableContainer<Data> &&) const;         // Move of the value; From MappableContainer; True if all are inserted

@@ -1,4 +1,3 @@
-#include "mappable.hpp"
 
 namespace lasd
 {

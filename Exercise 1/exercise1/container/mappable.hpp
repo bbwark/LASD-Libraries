@@ -18,7 +18,7 @@ namespace lasd
   /* ************************************************************************** */
 
   template <typename Data>
-  class MappableContainer : TraversableContainer<Data>
+  class MappableContainer : virtual public TraversableContainer<Data>
   {
 
   private:
