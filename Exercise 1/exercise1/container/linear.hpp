@@ -94,44 +94,38 @@ namespace lasd
   /* ************************************************************************** */
 
   template <typename Data>
-  class SortableLinearContainer
+  class SortableLinearContainer : virtual public LinearContainer<Data>
   {
-    // Must extend LinearContainer<Data>
 
   private:
-    // ...
-
   protected:
-    // ...
-
   public:
     // Destructor
-    // ~SortableLinearContainer() specifiers
+    virtual ~SortableLinearContainer() = default;
 
     /* ************************************************************************ */
 
     // Copy assignment
-    // type operator=(argument); // Copy assignment of abstract types is not possible.
+    SortableLinearContainer &operator=(const SortableLinearContainer &) = delete;
 
     // Move assignment
-    // type operator=(argument); // Move assignment of abstract types is not be possible.
+    SortableLinearContainer &operator=(SortableLinearContainer &&) noexcept = delete;
 
     /* ************************************************************************ */
 
     // Comparison operators
-    // type operator==(argument) specifiers; // Comparison of abstract types is possible.
-    // type operator!=(argument) specifiers; // Comparison of abstract types is possible.
+    bool operator==(const SortableLinearContainer &) const noexcept;
+    bool operator!=(const SortableLinearContainer &) const noexcept;
 
     /* ************************************************************************ */
 
     // Specific member function
 
-    // type Sort() specifiers;
+    virtual void Sort();
 
   protected:
-    // Auxiliary member functions
-
-    // ...
+    void QuickSort(unsigned long start, unsigned long end);
+    unsigned long Partition(unsigned long start, unsigned long end);
   };
 
   /* ************************************************************************** */

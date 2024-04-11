@@ -21,7 +21,7 @@ namespace lasd
   protected:
   public:
     // Destructor
-    virtual TestableContainer() = default;
+    virtual ~TestableContainer() = default;
 
     /* ************************************************************************ */
 
