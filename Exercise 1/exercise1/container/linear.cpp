@@ -93,17 +93,7 @@ namespace lasd
     template <typename Data>
     bool LinearContainer<Data>::operator!=(const LinearContainer &con) const noexcept
     {
-        if (Size() != con.Size())
-            return true;
-
-        bool same = true;
-        unsigned long index = 0;
-        con.Traverse([this, &same, &index](const Data &data)
-                     {
-            same = same && ((*this)[index] == data);
-            index++; });
-
-        return !same;
+        return !(*this == con);
     }
 
     template <typename Data>
@@ -123,19 +113,9 @@ namespace lasd
     }
 
     template <typename Data>
-    bool lasd::SortableLinearContainer<Data>::operator!=(const SortableLinearContainer &con) const noexcept
+    bool SortableLinearContainer<Data>::operator!=(const SortableLinearContainer &con) const noexcept
     {
-        if (Size() != con.Size())
-            return true;
-
-        bool same = true;
-        unsigned long index = 0;
-        con.Traverse([this, &same, &index](const Data &data)
-                     {
-            same = same && ((*this)[index] == data);
-            index++; });
-
-        return !same;
+        return !(*this == con);
     }
 
     template <typename Data>

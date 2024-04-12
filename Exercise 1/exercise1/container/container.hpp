@@ -40,7 +40,7 @@ namespace lasd
 
     // Specific member functions
 
-    virtual inline bool Empty() const noexcept
+    virtual inline bool Empty() noexcept
     {
       return (size == 0);
     }
