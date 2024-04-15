@@ -94,7 +94,7 @@ namespace lasd
   /* ************************************************************************** */
 
   template <typename Data>
-  class PostOrderMappableContainer : virtual public MappableContainer<Data>, virtual public PreOrderTraversableContainer<Data>
+  class PostOrderMappableContainer : virtual public MappableContainer<Data>, virtual public PostOrderTraversableContainer<Data>
   {
 
   private:

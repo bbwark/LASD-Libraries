@@ -40,12 +40,12 @@ namespace lasd
 
     // Specific member functions
 
-    virtual inline bool Empty() noexcept
+    virtual bool Empty() const noexcept
     {
-      return (size == 0);
+      return size == 0;
     }
 
-    virtual inline unsigned long Size() const noexcept
+    virtual unsigned long Size() const noexcept
     {
       return size;
     }

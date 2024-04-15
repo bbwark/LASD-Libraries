@@ -44,7 +44,7 @@ namespace lasd
     /* ************************************************************************ */
 
     // Destructor
-    / ~Vector();
+    ~Vector();
 
     /* ************************************************************************ */
 
@@ -98,7 +98,7 @@ namespace lasd
   private:
   protected:
     using Container::size;
-    Data *elements = nullptr;
+    using Vector<Data>::elements;
 
   public:
     // Default constructor
@@ -122,15 +122,15 @@ namespace lasd
     /* ************************************************************************ */
 
     // Destructor
-    ~SortableVector();
+    ~SortableVector() = default;
 
     /* ************************************************************************ */
 
     // Copy assignment
-    SortableVector &operator=(const SortableVector &);
+    SortableVector &operator=(const SortableVector<Data> &);
 
     // Move assignment
-    SortableVector &operator=(SortableVector &&) noexcept;
+    SortableVector &operator=(SortableVector<Data> &&) noexcept;
 
   protected:
     // Auxiliary functions, if necessary!

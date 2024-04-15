@@ -66,7 +66,7 @@ namespace lasd
     }
 
     template <typename Data>
-    bool DictionaryContainer<Data>::RemoveSome(TraversableContainer<Data> &&) const
+    bool DictionaryContainer<Data>::RemoveSome(TraversableContainer<Data> && con) const
     {
         bool result = false;
         con.Traverse(

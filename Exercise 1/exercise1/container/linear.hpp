@@ -19,6 +19,8 @@ namespace lasd
 
   private:
   protected:
+    using Container::size;
+
   public:
     // Destructor
     virtual ~LinearContainer() = default;
@@ -56,19 +58,19 @@ namespace lasd
 
     using typename TraversableContainer<Data>::TraverseFun;
 
-    virtual void Traverse(TraverseFun traverseFun) override; // Override TraversableContainer member
+    virtual void Traverse(TraverseFun traverseFun) const override; // Override TraversableContainer member
 
     /* ************************************************************************ */
 
     // Specific member function (inherited from PreOrderTraversableContainer)
 
-    virtual void PreOrderTraverse(TraverseFun traverseFun) override; // Override PreOrderTraversableContainer member
+    virtual void PreOrderTraverse(TraverseFun traverseFun) const override; // Override PreOrderTraversableContainer member
 
     /* ************************************************************************ */
 
     // Specific member function (inherited from PostOrderTraversableContainer)
 
-    virtual void PostOrderTraverse(TraverseFun traverseFun) override; // Override PostOrderTraversableContainer member
+    virtual void PostOrderTraverse(TraverseFun traverseFun) const override; // Override PostOrderTraversableContainer member
 
     /* ************************************************************************ */
 
@@ -99,6 +101,8 @@ namespace lasd
 
   private:
   protected:
+    using Container::size;
+
   public:
     // Destructor
     virtual ~SortableLinearContainer() = default;

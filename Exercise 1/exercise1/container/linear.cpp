@@ -17,45 +17,46 @@ namespace lasd
     template <typename Data>
     const Data &LinearContainer<Data>::Back() const
     {
-        return (*this)[Size() - 1];
+        return (*this)[size - 1];
     }
 
     template <typename Data>
     Data &LinearContainer<Data>::Back()
     {
-        return (*this)[Size() - 1];
+        return (*this)[size - 1];
     }
 
     template <typename Data>
-    void LinearContainer<Data>::Traverse(TraverseFun traverseFun)
+    void LinearContainer<Data>::Traverse(TraverseFun traverseFun) const
     {
-        for (unsigned long i = 0; i < Size(); ++i)
+        for (unsigned long i = 0; i < size; ++i)
         {
             traverseFun((*this)[i]);
         }
     }
 
     template <typename Data>
-    void LinearContainer<Data>::PreOrderTraverse(TraverseFun traverseFun)
+    void LinearContainer<Data>::PreOrderTraverse(TraverseFun traverseFun) const
     {
         Traverse(traverseFun);
     }
 
     template <typename Data>
-    void LinearContainer<Data>::PostOrderTraverse(TraverseFun traverseFun)
+    void LinearContainer<Data>::PostOrderTraverse(TraverseFun traverseFun) const
     {
-        for (unsigned long i = Size() - 1; i >= 0; --i)
+        unsigned long i = size;
+        while (i > 0)
         {
-            traverseFun((*this)[i]);
+            traverseFun((*this)[--i]);
         }
     }
 
     template <typename Data>
     void LinearContainer<Data>::Map(MapFun mapFun)
     {
-        for (unsigned long i = 0; i < Size(); ++i)
+        for (unsigned long i = 0; i < size; ++i)
         {
-            (*this)[i] = mapFun((*this)[i]);
+            mapFun((*this)[i]);
         }
     }
 
@@ -68,16 +69,17 @@ namespace lasd
     template <typename Data>
     void LinearContainer<Data>::PostOrderMap(MapFun mapFun)
     {
-        for (unsigned long i = Size() - 1; i >= 0; --i)
+        unsigned long i = size;
+        while (i > 0)
         {
-            (*this)[i] = mapFun((*this)[i]);
+            mapFun((*this)[--i]);
         }
     }
 
     template <typename Data>
     bool LinearContainer<Data>::operator==(const LinearContainer &con) const noexcept
     {
-        if (Size() != con.Size())
+        if (size != con.size)
             return false;
 
         bool same = true;
@@ -99,7 +101,7 @@ namespace lasd
     template <typename Data>
     inline bool SortableLinearContainer<Data>::operator==(const SortableLinearContainer &con) const noexcept
     {
-        if (Size() != con.Size())
+        if (size != con.size)
             return false;
 
         bool same = true;
@@ -124,7 +126,7 @@ namespace lasd
         Data pivotValue = (*this)[start];
         unsigned long pivotPosition = start;
 
-        for (unsigned long pos = start + 1; pos <= end; pos++)
+        for (unsigned long pos = start + 1; pos < end; pos++)
         {
             if ((*this)[pos] < pivotValue)
             {
@@ -143,7 +145,7 @@ namespace lasd
         {
             unsigned long p = Partition(start, end);
 
-            QuickSort(start, p - 1);
+            QuickSort(start, p);
             QuickSort(p + 1, end);
         }
     }
@@ -152,7 +154,7 @@ namespace lasd
     void SortableLinearContainer<Data>::Sort()
     {
         unsigned long start = 0;
-        unsigned long end = Size() - 1;
+        unsigned long end = size - 1;
         QuickSort(start, end);
     }
 }

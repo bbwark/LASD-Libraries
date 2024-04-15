@@ -46,13 +46,13 @@ namespace lasd
 
     using TraverseFun = std::function<void(const Data &)>;
 
-    virtual void Traverse(TraverseFun traverseFun) = 0;
+    virtual void Traverse(TraverseFun traverseFun) const = 0;
 
     template <typename Accumulator>
     using FoldFun = std::function<Accumulator(const Data &, const Accumulator &)>;
 
     template <typename Accumulator>
-    Accumulator Fold(FoldFun<Accumulator> foldFun, Accumulator accumulator);
+    Accumulator Fold(FoldFun<Accumulator> foldFun, Accumulator accumulator) const;
 
     /* ************************************************************************ */
 
@@ -93,19 +93,19 @@ namespace lasd
 
     using typename TraversableContainer<Data>::TraverseFun;
 
-    virtual void PreOrderTraverse(TraverseFun traverseFun) = 0;
+    virtual void PreOrderTraverse(TraverseFun traverseFun) const = 0;
 
     template <typename Accumulator>
     using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
 
     template <typename Accumulator>
-    Accumulator PreOrderFold(FoldFun<Accumulator> foldFun, Accumulator accumulator);
+    Accumulator PreOrderFold(FoldFun<Accumulator> foldFun, Accumulator accumulator) const;
 
     /* ************************************************************************ */
 
     // Specific member function (inherited from TraversableContainer)
 
-    virtual void Traverse(TraverseFun traverseFun) override;
+    virtual void Traverse(TraverseFun traverseFun) const override;
   };
 
   /* ************************************************************************** */
@@ -140,19 +140,19 @@ namespace lasd
 
     using typename TraversableContainer<Data>::TraverseFun;
 
-    virtual void PostOrderTraverse(TraverseFun traverseFun) = 0;
+    virtual void PostOrderTraverse(TraverseFun traverseFun) const = 0;
 
     template <typename Accumulator>
     using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
 
     template <typename Accumulator>
-    Accumulator PostOrderFold(FoldFun<Accumulator> foldFun, Accumulator accumulator);
+    Accumulator PostOrderFold(FoldFun<Accumulator> foldFun, Accumulator accumulator) const;
 
     /* ************************************************************************ */
 
     // Specific member function (inherited from TraversableContainer)
 
-    virtual void Traverse(TraverseFun traverseFun) override;
+    virtual void Traverse(TraverseFun traverseFun) const override;
   };
 
   /* ************************************************************************** */
@@ -187,19 +187,19 @@ namespace lasd
 
     using typename TraversableContainer<Data>::TraverseFun;
 
-    virtual void InOrderTraverse(TraverseFun traverseFun) = 0;
+    virtual void InOrderTraverse(TraverseFun traverseFun) const = 0;
 
     template <typename Accumulator>
     using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
 
     template <typename Accumulator>
-    Accumulator InOrderFold(FoldFun<Accumulator> foldFun, Accumulator accumulator);
+    Accumulator InOrderFold(FoldFun<Accumulator> foldFun, Accumulator accumulator) const;
 
     /* ************************************************************************ */
 
     // Specific member function (inherited from TraversableContainer)
 
-    virtual void Traverse(TraverseFun traverseFun) override;
+    virtual void Traverse(TraverseFun traverseFun) const override;
   };
 
   /* ************************************************************************** */
@@ -234,19 +234,19 @@ namespace lasd
 
     using typename TraversableContainer<Data>::TraverseFun;
 
-    virtual void BreadthOrderTraverse(TraverseFun traverseFun) = 0;
+    virtual void BreadthOrderTraverse(TraverseFun traverseFun) const = 0;
 
     template <typename Accumulator>
     using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
 
     template <typename Accumulator>
-    Accumulator BreadthOrderFold(FoldFun<Accumulator> foldFun, Accumulator accumulator);
+    Accumulator BreadthOrderFold(FoldFun<Accumulator> foldFun, Accumulator accumulator) const;
 
     /* ************************************************************************ */
 
     // Specific member function (inherited from TraversableContainer)
 
-    virtual void Traverse(TraverseFun traverseFun) override;
+    virtual void Traverse(TraverseFun traverseFun) const override;
   };
 
   /* ************************************************************************** */
