@@ -8,55 +8,48 @@
 
 /* ************************************************************************** */
 
-namespace lasd {
+namespace lasd
+{
 
-/* ************************************************************************** */
+  /* ************************************************************************** */
 
-template <typename Data>
-class Stack {
-  // Must extend ClearableContainer
+  template <typename Data>
+  class Stack : virtual public ClearableContainer
+  {
 
-private:
+  private:
+  protected:
+  public:
+    // Destructor
+    ~Stack() = default;
 
-  // ...
+    /* ************************************************************************ */
 
-protected:
+    // Copy assignment
+    Stack<Data> &operator=(const Stack<Data> &) = delete;
 
-  // ...
+    // Move assignment
+    Stack<Data> &operator=(Stack<Data> &&) noexcept = delete;
 
-public:
+    /* ************************************************************************ */
 
-  // Destructor
-  // ~Stack() specifiers
+    // Comparison operators
+    bool operator==(const Stack<Data> &) const noexcept = delete;
+    bool operator!=(const Stack<Data> &) const noexcept = delete;
 
-  /* ************************************************************************ */
+    /* ************************************************************************ */
 
-  // Copy assignment
-  // type operator=(argument); // Copy assignment of abstract types is not possible.
+    // Specific member functions
 
-  // Move assignment
-  // type operator=(argument); // Move assignment of abstract types is not possible.
+    virtual const Data &Top() const = 0; // (non-mutable version; concrete function must throw std::length_error when empty)
+    virtual Data &Top() = 0;             // (mutable version; concrete function must throw std::length_error when empty)
+    virtual void Pop() = 0;              // (concrete function must throw std::length_error when empty)
+    virtual Data TopNPop() = 0;          // (concrete function must throw std::length_error when empty)
+    virtual Data Push(const Data &) = 0; // Copy of the value
+    virtual Data Push(Data &&) = 0;     // Move of the value
+  };
 
-  /* ************************************************************************ */
-
-  // Comparison operators
-  // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
-  // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
-
-  /* ************************************************************************ */
-
-  // Specific member functions
-
-  // type Top() specifiers; // (non-mutable version; concrete function must throw std::length_error when empty)
-  // type Top() specifiers; // (mutable version; concrete function must throw std::length_error when empty)
-  // type Pop() specifiers; // (concrete function must throw std::length_error when empty)
-  // type TopNPop() specifiers; // (concrete function must throw std::length_error when empty)
-  // type Push(argument) specifiers; // Copy of the value
-  // type Push(argument) specifiers; // Move of the value
-
-};
-
-/* ************************************************************************** */
+  /* ************************************************************************** */
 
 }
 

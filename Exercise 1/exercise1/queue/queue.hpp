@@ -8,55 +8,48 @@
 
 /* ************************************************************************** */
 
-namespace lasd {
+namespace lasd
+{
 
-/* ************************************************************************** */
+  /* ************************************************************************** */
 
-template <typename Data>
-class Queue {
-  // Must extend ClearableContainer
+  template <typename Data>
+  class Queue : virtual public ClearableContainer
+  {
 
-private:
+  private:
+  protected:
+  public:
+    // Destructor
+    virtual ~Queue() = 0;
 
-  // ...
+    /* ************************************************************************ */
 
-protected:
+    // Copy assignment
+    Queue<Data> &operator=(const Queue<Data> &) = delete;
 
-  // ...
+    // Move assignment
+    Queue<Data> &operator=(Queue<Data> &&) noexcept = delete;
 
-public:
+    /* ************************************************************************ */
 
-  // Destructor
-  // ~Queue() specifiers
+    // Comparison operators
+    bool operator==(const Data &) const noexcept = delete;
+    bool operator!=(const Data &) const noexcept = delete;
 
-  /* ************************************************************************ */
+    /* ************************************************************************ */
 
-  // Copy assignment
-  // type operator=(argument); // Copy assignment of abstract types is not possible.
+    // Specific member functions
 
-  // Move assignment
-  // type operator=(argument); // Move assignment of abstract types is not possible.
+    virtual const Data &Head() const = 0;   // (non-mutable version; concrete function must throw std::length_error when empty)
+    virtual Data &Head() = 0;               // (mutable version; concrete function must throw std::length_error when empty)
+    virtual void Dequeue() = 0;             // (concrete function must throw std::length_error when empty)
+    virtual Data HeadNDequeue() = 0;        // (concrete function must throw std::length_error when empty)
+    virtual void Enqueue(const Data &) = 0; // Copy of the value
+    virtual void Enqueue(Data &&) = 0;      // Move of the value
+  };
 
-  /* ************************************************************************ */
-
-  // Comparison operators
-  // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
-  // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
-
-  /* ************************************************************************ */
-
-  // Specific member functions
-
-  // type Head() specifiers; // (non-mutable version; concrete function must throw std::length_error when empty)
-  // type Head() specifiers; // (mutable version; concrete function must throw std::length_error when empty)
-  // type Dequeue() specifiers; // (concrete function must throw std::length_error when empty)
-  // type HeadNDequeue() specifiers; // (concrete function must throw std::length_error when empty)
-  // type Enqueue(argument) specifiers; // Copy of the value
-  // type Enqueue(argument) specifiers; // Move of the value
-
-};
-
-/* ************************************************************************** */
+  /* ************************************************************************** */
 
 }
 
