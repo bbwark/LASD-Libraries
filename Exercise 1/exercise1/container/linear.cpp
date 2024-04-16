@@ -126,15 +126,15 @@ namespace lasd
         Data pivotValue = (*this)[start];
         unsigned long pivotPosition = start;
 
-        for (unsigned long pos = start + 1; pos < end; pos++)
+        for (unsigned long pos = start + 1; pos <= end; pos++)
         {
             if ((*this)[pos] < pivotValue)
             {
-                std::swap((*this)[pivotPosition + 1], (*this)[pos]);
-                std::swap((*this)[pivotPosition], (*this)[pivotPosition + 1]);
                 pivotPosition++;
+                std::swap((*this)[pivotPosition], (*this)[pos]);
             }
         }
+        std::swap((*this)[start], (*this)[pivotPosition]);
         return pivotPosition;
     }
 
@@ -144,8 +144,8 @@ namespace lasd
         if (start < end)
         {
             unsigned long p = Partition(start, end);
-
-            QuickSort(start, p);
+            if (p != 0)
+                QuickSort(start, p - 1);
             QuickSort(p + 1, end);
         }
     }
