@@ -220,10 +220,200 @@ namespace lasd
     }
 
     template <typename Data>
-    void List<Data>::Clear(){
-        for(unsigned long index = 0; index < size; index++){
+    void List<Data>::Clear()
+    {
+        for (unsigned long index = 0; index < size; index++)
+        {
             RemoveFromFront();
         }
         size = 0;
     }
+
+    template <typename Data>
+    bool List<Data>::Insert(const Data &data)
+    {
+        for (Node *current = head; current != nullptr; current = current->next)
+        {
+            if (current->element == data)
+            {
+                return false;
+            }
+        }
+        InsertAtBack(data);
+        return true;
+    }
+
+    template <typename Data>
+    bool List<Data>::Insert(Data &&data) noexcept
+    {
+        for (Node *current = head; current != nullptr; current = current->next)
+        {
+            if (current->element == data)
+            {
+                return false;
+            }
+        }
+        InsertAtBack(std::move(data));
+        return true;
+    }
+
+    template <typename Data>
+    bool List<Data>::Remove(const Data &data)
+    {
+        Node *last = nullptr;
+        for (Node **current = &head; *current != nullptr; last = *current, current = &((last->next)))
+        {
+            if ((*current)->element == data)
+            {
+                Node *node = *current;
+                *current = node->next;
+                node->next = nullptr;
+                delete node;
+                size--;
+                if (tail == node)
+                {
+                    tail = last;
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    template <typename Data>
+    const Data &List<Data>::operator[](const unsigned long index) const
+    {
+        if (index >= size)
+        {
+            throw std::out_of_range("Access out of bounds [" + std::to_string(index) + "]");
+        }
+        else
+        {
+            Node *current = head;
+            for (unsigned long i = 0; i < index; ++i, current = current->next)
+            {
+            }
+            return current->element;
+        }
+    }
+
+    template <typename Data>
+    Data &List<Data>::operator[](const unsigned long index)
+    {
+        if (index >= size)
+        {
+            throw std::out_of_range("Access out of bounds [" + std::to_string(index) + "]");
+        }
+        else
+        {
+            Node *current = head;
+            for (unsigned long i = 0; i < index; ++i, current = current->next)
+            {
+            }
+            return current->element;
+        }
+    }
+
+    template <typename Data>
+    const Data &List<Data>::Front() const
+    {
+        if (head == nullptr)
+        {
+            throw std::length_error("Head in List (" + std::to_string(*this) + ") is nullptr");
+        }
+        else
+        {
+            return head->element;
+        }
+    }
+
+    template <typename Data>
+    Data &List<Data>::Front()
+    {
+        if (head == nullptr)
+        {
+            throw std::length_error("Head in List (" + std::to_string(*this) + ") is nullptr");
+        }
+        else
+        {
+            return head->element;
+        }
+    }
+
+    template <typename Data>
+    const Data &List<Data>::Back() const
+    {
+        if (tail == nullptr)
+        {
+            throw std::length_error("Tail in List (" + std::to_string(*this) + ") is nullptr");
+        }
+        else
+        {
+            return tail->element;
+        }
+    }
+
+    template <typename Data>
+    Data &List<Data>::Back()
+    {
+        if (tail == nullptr)
+        {
+            throw std::length_error("Tail in List (" + std::to_string(*this) + ") is nullptr");
+        }
+        else
+        {
+            return tail->element;
+        }
+    }
+
+    template <typename Data>
+    void List<Data>::Traverse(TraverseFun traverseFun) const
+    {
+        for (unsigned long index = 0; index < size; ++index)
+        {
+            traverseFun((*this)[index]);
+        }
+    }
+
+    template <typename Data>
+    void List<Data>::PreOrderTraverse(TraverseFun traverseFun) const
+    {
+        Traverse(traverseFun);
+    }
+
+    template <typename Data>
+    void List<Data>::PostOrderTraverse(TraverseFun traverseFun) const
+    {
+        ulong index = size;
+        while (index > 0)
+        {
+            traverseFun((*this)[--index]);
+        }
+    }
+
+    template <typename Data>
+    void List<Data>::Map(MapFun mapFun)
+    {
+        for (unsigned long index = 0; index < size; ++index)
+        {
+            mapFun((*this)[index]);
+        }
+    }
+
+    template <typename Data>
+    void List<Data>::PreOrderMap(MapFun mapFun)
+    {
+        Map(mapFun);
+    }
+
+    template <typename Data>
+    void List<Data>::PostOrderMap(MapFun mapFun)
+    {
+        ulong index = size;
+        while (index > 0)
+        {
+            mapFun((*this)[--index]);
+        }
+    }
+
 }
