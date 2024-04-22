@@ -83,7 +83,7 @@ namespace lasd
     }
 
     template <typename Data>
-    List &List<Data>::operator=(List &&) noexcept
+    List<Data> &List<Data>::operator=(List &&list) noexcept
     {
         std::swap(head, list.head);
         std::swap(tail, list.tail);
@@ -220,7 +220,7 @@ namespace lasd
     }
 
     template <typename Data>
-    void List<Data>::Clear()
+    void List<Data>::Clear() noexcept
     {
         for (unsigned long index = 0; index < size; index++)
         {

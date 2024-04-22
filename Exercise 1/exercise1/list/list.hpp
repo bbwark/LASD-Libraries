@@ -131,7 +131,7 @@ namespace lasd
 
     // Specific member function (inherited from ClearableContainer)
 
-    void Clear() override; // Override ClearableContainer member
+    void Clear() noexcept override; // Override ClearableContainer member
 
     /* ************************************************************************ */
 
