@@ -11,8 +11,8 @@ namespace lasd
 	template <typename Data>
 	Vector<Data>::Vector(const TraversableContainer<Data> &con)
 	{
-		size = con.size;
-		elements = new Data[con.size]{};
+		size = con.Size();
+		elements = new Data[con.Size()]{};
 		unsigned long index = 0;
 		con.Traverse(
 			[this, &index](const Data &data)
@@ -25,8 +25,8 @@ namespace lasd
 	template <typename Data>
 	Vector<Data>::Vector(MappableContainer<Data> &&con)
 	{
-		size = con.size;
-		elements = new Data[con.size]{};
+		size = con.Size();
+		elements = new Data[con.Size()]{};
 		unsigned long index = 0;
 		con.Map(
 			[this, &index](const Data &data)
@@ -221,8 +221,8 @@ namespace lasd
 	template <typename Data>
 	SortableVector<Data>::SortableVector(const TraversableContainer<Data> &con)
 	{
-		size = con.size;
-		elements = new Data[con.size]{};
+		size = con.Size();
+		elements = new Data[con.Size()]{};
 		unsigned long index = 0;
 		con.Traverse(
 			[this, &index](const Data &data)
@@ -235,8 +235,8 @@ namespace lasd
 	template <typename Data>
 	SortableVector<Data>::SortableVector(MappableContainer<Data> &&con)
 	{
-		size = con.size;
-		elements = new Data[con.size]{};
+		size = con.Size();
+		elements = new Data[con.Size()]{};
 		unsigned long index = 0;
 		con.Map(
 			[this, &index](const Data &data)

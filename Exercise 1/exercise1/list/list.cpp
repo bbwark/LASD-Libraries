@@ -1,37 +1,12 @@
+#include "list.hpp"
 
 namespace lasd
 {
-    template <typename Data>
-    inline bool List<Data>::Node::operator==(const Node &node) const noexcept
-    {
-        return (element == node->element);
-    }
 
     template <typename Data>
-    bool lasd::List<Data>::Node::operator!=(const Node &node) const noexcept
+    inline List<Data>::List(const TraversableContainer<Data> &container)
     {
-        return !(*this == node);
-    }
-
-    template <typename Data>
-    List<Data>::Node *List<Data>::Node::Clone(Node *node)
-    {
-        if (next == nullptr)
-        {
-            return node;
-        }
-        else
-        {
-            Node *newNode = new Node(element);
-            newNode->next = next->Clone(node);
-            return newNode;
-        }
-    }
-
-    template <typename Data>
-    inline List<Data>::List(const TraversableContainer<Data> &con)
-    {
-        con.Traverse(
+        container.Traverse(
             [this](const Data &data)
             {
                 InsertAtBack(data);
@@ -39,12 +14,12 @@ namespace lasd
     }
 
     template <typename Data>
-    inline List<Data>::List(MappableContainer<Data> &&con)
+    List<Data>::List(MappableContainer<Data> &&container)
     {
-        con.Map(
-            [this](const Data &data)
+        container.Map(
+            [this](Data &data)
             {
-                InsertAtBack(data);
+                InsertAtBack(std::move(data));
             });
     }
 
@@ -60,7 +35,7 @@ namespace lasd
     }
 
     template <typename Data>
-    List<Data>::List(List &&list) noexcept
+    List<Data>::List(List<Data> &&list) noexcept
     {
         std::swap(list.head, head);
         std::swap(list.tail, tail);
@@ -68,7 +43,7 @@ namespace lasd
     }
 
     template <typename Data>
-    lasd::List<Data>::~List()
+    List<Data>::~List()
     {
         delete head;
     }
@@ -83,7 +58,7 @@ namespace lasd
     }
 
     template <typename Data>
-    List<Data> &List<Data>::operator=(List &&list) noexcept
+    List<Data> &List<Data>::operator=(List<Data> &&list) noexcept
     {
         std::swap(head, list.head);
         std::swap(tail, list.tail);
@@ -96,16 +71,16 @@ namespace lasd
     {
         if (size == list.size)
         {
-            Node *first = head;
-            Node *second = list.head;
-            while (first != nullptr)
+            Node *lista1 = head;
+            Node *lista2 = list.head;
+            while (lista1 != nullptr)
             {
-                if (first->element != second->element)
+                if (lista1->element != lista2->element)
                 {
                     return false;
                 }
-                first = first->next;
-                second = second->next;
+                lista1 = lista1->next;
+                lista2 = lista2->next;
             }
             return true;
         }
@@ -116,17 +91,17 @@ namespace lasd
     }
 
     template <typename Data>
-    inline bool List<Data>::operator!=(const List &list) const noexcept
+    inline bool List<Data>::operator!=(const List &lista) const noexcept
     {
-        return !(*this == list);
+        return !(*this == lista);
     }
 
     template <typename Data>
     void List<Data>::InsertAtFront(const Data &data)
     {
-        Node *temp = new Node(data);
-        temp->next = head;
-        head = temp;
+        Node *front = new Node(data);
+        front->next = head;
+        head = front;
         if (tail == nullptr)
         {
             tail = head;
@@ -137,9 +112,9 @@ namespace lasd
     template <typename Data>
     void List<Data>::InsertAtFront(Data &&data)
     {
-        Node *temp = new Node(std::move(data));
-        temp->next = head;
-        head = temp;
+        Node *front = new Node(std::move(data));
+        front->next = head;
+        head = front;
         if (tail == nullptr)
         {
             tail = head;
@@ -150,9 +125,9 @@ namespace lasd
     template <typename Data>
     void List<Data>::RemoveFromFront()
     {
-        if (size > 0 || head != nullptr)
+        if (head != nullptr)
         {
-            Node *temp = head;
+            Node *front = head;
             if (tail == head)
             {
                 head = nullptr;
@@ -163,12 +138,12 @@ namespace lasd
                 head = head->next;
             }
             size--;
-            temp->next = nullptr;
-            delete temp;
+            front->next = nullptr;
+            delete front;
         }
         else
         {
-            throw std::length_error("Trying to access an empty List");
+            throw std::length_error("Access to Empty List");
         }
     }
 
@@ -177,29 +152,29 @@ namespace lasd
     {
         if (head != nullptr)
         {
-            Data removedData = Front();
+            Data dataRemoved = Front();
             RemoveFromFront();
-            return removedData;
+            return dataRemoved;
         }
         else
         {
-            throw std::length_error("Trying to access an empty List");
+            throw std::length_error("Access to Empty List");
         }
     }
 
     template <typename Data>
     void List<Data>::InsertAtBack(const Data &data)
     {
-        Node *temp = new Node(data);
+        Node *back = new Node(data);
         if (tail == nullptr)
         {
-            head = temp;
+            head = back;
         }
         else
         {
-            tail->next = temp;
+            tail->next = back;
         }
-        tail = temp;
+        tail = back;
         size++;
     }
 
@@ -222,7 +197,8 @@ namespace lasd
     template <typename Data>
     void List<Data>::Clear() noexcept
     {
-        for (unsigned long index = 0; index < size; index++)
+        unsigned long cont = size;
+        for (unsigned long index = 0; index < cont; index++)
         {
             RemoveFromFront();
         }
@@ -285,12 +261,12 @@ namespace lasd
     {
         if (index >= size)
         {
-            throw std::out_of_range("Access out of bounds [" + std::to_string(index) + "]");
+            throw std::out_of_range("Invalid Access at Index " + std::to_string(index));
         }
         else
         {
             Node *current = head;
-            for (unsigned long i = 0; i < index; ++i, current = current->next)
+            for (unsigned long idx = 0; idx < index; ++idx, current = current->next)
             {
             }
             return current->element;
@@ -302,12 +278,12 @@ namespace lasd
     {
         if (index >= size)
         {
-            throw std::out_of_range("Access out of bounds [" + std::to_string(index) + "]");
+            throw std::out_of_range("Invalid Access at Index " + std::to_string(index));
         }
         else
         {
             Node *current = head;
-            for (unsigned long i = 0; i < index; ++i, current = current->next)
+            for (unsigned long idx = 0; idx < index; ++idx, current = current->next)
             {
             }
             return current->element;
@@ -319,7 +295,7 @@ namespace lasd
     {
         if (head == nullptr)
         {
-            throw std::length_error("Head in List (" + std::to_string(*this) + ") is nullptr");
+            throw std::length_error("Invalid Access to empty Vector");
         }
         else
         {
@@ -332,7 +308,7 @@ namespace lasd
     {
         if (head == nullptr)
         {
-            throw std::length_error("Head in List (" + std::to_string(*this) + ") is nullptr");
+            throw std::length_error("Invalid Access to empty Vector");
         }
         else
         {
@@ -343,9 +319,9 @@ namespace lasd
     template <typename Data>
     const Data &List<Data>::Back() const
     {
-        if (tail == nullptr)
+        if (head == nullptr)
         {
-            throw std::length_error("Tail in List (" + std::to_string(*this) + ") is nullptr");
+            throw std::length_error("Invalid Access to empty Vector");
         }
         else
         {
@@ -356,9 +332,9 @@ namespace lasd
     template <typename Data>
     Data &List<Data>::Back()
     {
-        if (tail == nullptr)
+        if (head == nullptr)
         {
-            throw std::length_error("Tail in List (" + std::to_string(*this) + ") is nullptr");
+            throw std::length_error("Invalid Access to empty Vector");
         }
         else
         {
@@ -367,52 +343,105 @@ namespace lasd
     }
 
     template <typename Data>
-    void List<Data>::Traverse(TraverseFun traverseFun) const
+    inline void List<Data>::Traverse(TraverseFun traverseFun) const
     {
-        for (unsigned long index = 0; index < size; ++index)
-        {
-            traverseFun((*this)[index]);
-        }
+        PreOrderTraverse(traverseFun);
     }
 
     template <typename Data>
     void List<Data>::PreOrderTraverse(TraverseFun traverseFun) const
     {
-        Traverse(traverseFun);
+        for (unsigned long index = 0; index < size; index++)
+        {
+            traverseFun(operator[](index));
+        }
     }
 
     template <typename Data>
     void List<Data>::PostOrderTraverse(TraverseFun traverseFun) const
     {
-        ulong index = size;
+        unsigned long index = size;
         while (index > 0)
         {
-            traverseFun((*this)[--index]);
+            traverseFun(operator[](--index));
         }
     }
 
     template <typename Data>
-    void List<Data>::Map(MapFun mapFun)
+    inline void List<Data>::Map(MapFun mapFun)
     {
-        for (unsigned long index = 0; index < size; ++index)
-        {
-            mapFun((*this)[index]);
-        }
+        PreOrderMap(mapFun);
     }
 
     template <typename Data>
     void List<Data>::PreOrderMap(MapFun mapFun)
     {
-        Map(mapFun);
+        for (unsigned long index = 0; index < size; index++)
+        {
+            mapFun(operator[](index));
+        }
     }
 
     template <typename Data>
     void List<Data>::PostOrderMap(MapFun mapFun)
     {
-        ulong index = size;
+        unsigned long index = size;
         while (index > 0)
         {
-            mapFun((*this)[--index]);
+            mapFun(operator[](--index));
+        }
+    }
+
+    template <typename Data>
+    List<Data>::Node::Node(const Data &data)
+    {
+        element = data;
+        next = nullptr;
+    }
+
+    template <typename Data>
+    List<Data>::Node::Node(Data &&data) noexcept
+    {
+        std::swap(element, data);
+    }
+
+    template <typename Data>
+    inline List<Data>::Node::Node(Node &&node) noexcept
+    {
+        std::swap(element, node.element);
+        std::swap(next, node.next);
+    }
+
+    template <typename Data>
+    List<Data>::Node::~Node()
+    {
+        delete next;
+    }
+
+    template <typename Data>
+    bool List<Data>::Node::operator==(const Node &node) const noexcept
+    {
+        return (element == node->element);
+    }
+
+    template <typename Data>
+    inline bool List<Data>::Node::operator!=(const Node &node) const noexcept
+    {
+        return !(*this == node);
+    }
+
+    template <typename Data>
+    List<Data>::Node *List<Data>::Node::Clone(Node *node)
+    {
+        if (next == nullptr)
+        {
+            return node;
+        }
+        else
+        {
+            Node *newNode = new Node(element);
+            newNode->next = next->Clone(node);
+            return newNode;
         }
     }
 

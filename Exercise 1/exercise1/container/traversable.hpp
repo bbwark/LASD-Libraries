@@ -58,7 +58,7 @@ namespace lasd
 
     // Specific member function (inherited from TestableContainer)
 
-    virtual bool Exists(const Data &) const noexcept;
+    inline bool Exists(const Data &) const noexcept override;
   };
 
   /* ************************************************************************** */

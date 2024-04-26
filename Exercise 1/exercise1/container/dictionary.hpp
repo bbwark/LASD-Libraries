@@ -14,7 +14,7 @@ namespace lasd
   /* ************************************************************************** */
 
   template <typename Data>
-  class DictionaryContainer : TestableContainer<Data>
+  class DictionaryContainer : virtual public TestableContainer<Data>
   {
 
   private:
