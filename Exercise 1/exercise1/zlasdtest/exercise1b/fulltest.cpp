@@ -3,5 +3,6 @@
 
 /* ************************************************************************** */
 
-// void testFullExercise1B(uint &, uint &) {
-// }
+void testFullExercise1B(uint &, uint &)
+{
+}

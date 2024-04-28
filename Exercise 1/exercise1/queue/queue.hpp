@@ -21,15 +21,14 @@ namespace lasd
   protected:
   public:
     // Destructor
-    virtual ~Queue() = 0;
-
+    ~Queue() = default;
     /* ************************************************************************ */
 
     // Copy assignment
-    Queue<Data> &operator=(const Queue<Data> &) = delete;
+    Queue &operator=(const Queue &) = delete;
 
     // Move assignment
-    Queue<Data> &operator=(Queue<Data> &&) noexcept = delete;
+    Queue &operator=(Queue &&) noexcept = delete;
 
     /* ************************************************************************ */
 
@@ -40,13 +39,12 @@ namespace lasd
     /* ************************************************************************ */
 
     // Specific member functions
-
-    virtual const Data &Head() const = 0;   // (non-mutable version; concrete function must throw std::length_error when empty)
-    virtual Data &Head() = 0;               // (mutable version; concrete function must throw std::length_error when empty)
-    virtual void Dequeue() = 0;             // (concrete function must throw std::length_error when empty)
-    virtual Data HeadNDequeue() = 0;        // (concrete function must throw std::length_error when empty)
-    virtual void Enqueue(const Data &) = 0; // Copy of the value
-    virtual void Enqueue(Data &&) = 0;      // Move of the value
+    virtual const Data &Head() const = 0;
+    virtual Data &Head() = 0;
+    virtual void Dequeue() = 0;
+    virtual Data HeadNDequeue() = 0;
+    virtual void Enqueue(const Data &) = 0;
+    virtual void Enqueue(Data &&) noexcept = 0;
   };
 
   /* ************************************************************************** */

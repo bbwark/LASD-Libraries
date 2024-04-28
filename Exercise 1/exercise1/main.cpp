@@ -1,7 +1,7 @@
 
 #include "zlasdtest/test.hpp"
 
-#include "zlasdtest/test.hpp"
+#include "zmytest/test.hpp"
 
 /* ************************************************************************** */
 
@@ -9,8 +9,11 @@
 
 /* ************************************************************************** */
 
-int main() {
+int main()
+{
   std::cout << "Lasd Libraries 2024" << std::endl;
   lasdtest();
+  std::cout << "My Tests" << std::endl;
+  mytest();
   return 0;
 }
