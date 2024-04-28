@@ -9,10 +9,8 @@ namespace lasd
 	}
 
 	template <typename Data>
-	Vector<Data>::Vector(const TraversableContainer<Data> &con)
+	Vector<Data>::Vector(const TraversableContainer<Data> &con) : Vector(con.Size())
 	{
-		size = con.Size();
-		elements = new Data[con.Size()]{};
 		unsigned long index = 0;
 		con.Traverse(
 			[this, &index](const Data &data)
@@ -23,13 +21,11 @@ namespace lasd
 	}
 
 	template <typename Data>
-	Vector<Data>::Vector(MappableContainer<Data> &&con)
+	Vector<Data>::Vector(MappableContainer<Data> &&con) : Vector(con.Size())
 	{
-		size = con.Size();
-		elements = new Data[con.Size()]{};
 		unsigned long index = 0;
 		con.Map(
-			[this, &index](const Data &data)
+			[this, &index](Data &data)
 			{
 				elements[index] = std::move(data);
 				index++;
@@ -39,7 +35,7 @@ namespace lasd
 	template <typename Data>
 	Vector<Data>::Vector(const Vector<Data> &vec)
 	{
-		elements = new Data[vec.size]{};
+		elements = new Data[vec.size];
 		std::copy(vec.elements, vec.elements + vec.size, elements);
 		size = vec.size;
 	}
@@ -47,8 +43,8 @@ namespace lasd
 	template <typename Data>
 	Vector<Data>::Vector(Vector<Data> &&vec) noexcept
 	{
-		std::swap(elements, vec.elements);
 		std::swap(size, vec.size);
+		std::swap(elements, vec.elements);
 	}
 
 	template <typename Data>
@@ -214,15 +210,14 @@ namespace lasd
 	template <typename Data>
 	inline SortableVector<Data>::SortableVector(const unsigned long n)
 	{
+		std::cout << "SortableVec Constructor Long" << std::endl;
 		elements = new Data[n]{};
 		size = n;
 	}
 
 	template <typename Data>
-	SortableVector<Data>::SortableVector(const TraversableContainer<Data> &con)
+	SortableVector<Data>::SortableVector(const TraversableContainer<Data> &con) : SortableVector(con.Size())
 	{
-		size = con.Size();
-		elements = new Data[con.Size()]{};
 		unsigned long index = 0;
 		con.Traverse(
 			[this, &index](const Data &data)
@@ -233,13 +228,11 @@ namespace lasd
 	}
 
 	template <typename Data>
-	SortableVector<Data>::SortableVector(MappableContainer<Data> &&con)
+	SortableVector<Data>::SortableVector(MappableContainer<Data> &&con) : SortableVector(con.Size())
 	{
-		size = con.Size();
-		elements = new Data[con.Size()]{};
 		unsigned long index = 0;
 		con.Map(
-			[this, &index](const Data &data)
+			[this, &index](Data &data)
 			{
 				elements[index] = std::move(data);
 				index++;
@@ -249,32 +242,29 @@ namespace lasd
 	template <typename Data>
 	SortableVector<Data>::SortableVector(const SortableVector<Data> &vec)
 	{
-		elements = new Data[vec.size]{};
-		std::copy(vec.elements, vec.elements + vec.size, elements);
 		size = vec.size;
+		elements = new Data[vec.size];
+		std::copy(vec.elements, vec.elements + vec.size, elements);
 	}
 
 	template <typename Data>
 	SortableVector<Data>::SortableVector(SortableVector<Data> &&vec) noexcept
 	{
-		std::swap(elements, vec.elements);
 		std::swap(size, vec.size);
+		std::swap(elements, vec.elements);
 	}
 
 	template <typename Data>
 	SortableVector<Data> &SortableVector<Data>::operator=(const SortableVector<Data> &vec)
 	{
-		SortableVector<Data> *tmpvec = new SortableVector<Data>(vec);
-		std::swap(*tmpvec, *this);
-		delete tmpvec;
+		Vector<Data>::operator=(vec);
 		return *this;
 	}
 
 	template <typename Data>
 	SortableVector<Data> &SortableVector<Data>::operator=(SortableVector<Data> &&vec) noexcept
 	{
-		std::swap(elements, vec.elements);
-		std::swap(size, vec.size);
+		Vector<Data>::operator=(std::move(vec));
 		return *this;
 	}
 }
