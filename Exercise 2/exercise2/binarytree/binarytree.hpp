@@ -10,7 +10,7 @@
 #include "../iterator/iterator.hpp"
 
 #include "../stack/vec/stackvec.hpp"
-// #include "../stack/lst/stacklst.hpp"
+// #include "../stack/lst/stackVec.hpp"
 #include "../queue/vec/queuevec.hpp"
 // #include "../queue/lst/queuelst.hpp"
 
@@ -126,7 +126,11 @@ namespace lasd
     virtual void BreadthTraverse(TraverseFun) const override; // Override BreadthTraversableContainer member
 
   protected:
-    // Auxiliary functions, if necessary!
+    void Traverse(const Node *, const TraverseFun&) const;
+    void PostOrderTraverse(const Node *, const TraverseFun&) const;
+    void InOrderTraverse(const Node *, const TraverseFun&) const;
+    //void BreadthTraverse(const Node *, const TraverseFun&) const;
+
   };
 
   /* ************************************************************************** */
@@ -157,7 +161,7 @@ namespace lasd
       MutableBinaryTree &operator=(const MutableBinaryTree &) = delete; // Copy assignment of abstract types is not possible.
 
       // Move assignment
-      MutableBinaryTree &operator=(MutableBinaryTree &&) noexcept = delete; // Move assignment of abstract types is not possible.
+      MutableBinaryTree &operator=(MutableBinaryTree<Data> &) noexcept = delete; // Move assignment of abstract types is not possible.
 
       /* ********************************************************************** */
 
@@ -180,7 +184,7 @@ namespace lasd
     MutableBinaryTree &operator=(const MutableBinaryTree &) = delete; // Copy assignment of abstract types is not possible.
 
     // Move assignment
-    MutableBinaryTree &operator=(MutableBinaryTree &&) noexcept = delete; // Move assignment of abstract types is not possible.
+    MutableBinaryTree &operator=(MutableBinaryTree<Data> &) noexcept = delete; // Move assignment of abstract types is not possible.
 
     /* ************************************************************************ */
 
@@ -234,7 +238,7 @@ namespace lasd
   protected:
     using typename BinaryTree<Data>::Node;
     Node *node = nullptr;
-    StackLst<Node *> stack;
+    StackVec<const Node *> stack;
 
   public:
     // Specific constructors
@@ -243,23 +247,23 @@ namespace lasd
     /* ************************************************************************ */
 
     // Copy constructor
-    BTPreOrderIterator(const BTPreOrderIterator<Data> &);
+    BTPreOrderIterator(const BTPreOrderIterator &);
 
     // Move constructor
-    BTPreOrderIterator(BTPreOrderIterator<Data> &&) noexcept;
+    BTPreOrderIterator(BTPreOrderIterator &&) noexcept;
 
     /* ************************************************************************ */
 
     // Destructor
-    ~BTPreOrderIterator();
+    virtual ~BTPreOrderIterator() = default;
 
     /* ************************************************************************ */
 
     // Copy assignment
-    BTPreOrderIterator &operator=(const BTPreOrderIterator<Data> &);
+    BTPreOrderIterator &operator=(const BTPreOrderIterator &);
 
     // Move assignment
-    BTPreOrderIterator &operator=(BTPreOrderIterator<Data> &&) noexcept;
+    BTPreOrderIterator &operator=(BTPreOrderIterator &&) noexcept;
 
     /* ************************************************************************ */
 
@@ -285,7 +289,7 @@ namespace lasd
 
     // Specific member functions (inherited from ResettableIterator)
 
-    void Reset() const noexcept; // (should not throw exceptions)
+    void Reset() noexcept override; // (should not throw exceptions)
   };
 
   /* ************************************************************************** */
@@ -296,21 +300,19 @@ namespace lasd
 
   private:
   protected:
-    using typename MutableBinaryTree<Data>::MutableNode;
-    MutableNode *node = nullptr;
-    StackLst<MutableNode *> stack;
+    using BTPreOrderIterator<Data>::stack;
 
   public:
     // Specific constructors
-    BTPreOrderMutableIterator(MutableBinaryTree &&); // An iterator over a given mutable binary tree
+    BTPreOrderMutableIterator(MutableBinaryTree<Data> &); // An iterator over a given mutable binary tree
 
     /* ************************************************************************ */
 
     // Copy constructor
-    BTPreOrderMutableIterator(const BTPreOrderMutableIterator<Data> &);
+    BTPreOrderMutableIterator(const BTPreOrderMutableIterator &);
 
     // Move constructor
-    BTPreOrderMutableIterator(BTPreOrderMutableIterator<Data> &&);
+    BTPreOrderMutableIterator(BTPreOrderMutableIterator &&);
 
     /* ************************************************************************ */
 
@@ -320,10 +322,10 @@ namespace lasd
     /* ************************************************************************ */
 
     // Copy assignment
-    BTPreOrderMutableIterator &operator=(const BTPreOrderMutableIterator<Data>);
+    BTPreOrderMutableIterator &operator=(const BTPreOrderMutableIterator &);
 
     // Move assignment
-    BTPreOrderMutableIterator &operator=(BTPreOrderMutableIterator<Data> &&) noexcept;
+    BTPreOrderMutableIterator &operator=(BTPreOrderMutableIterator &&) noexcept;
 
     /* ************************************************************************ */
 
@@ -348,7 +350,7 @@ namespace lasd
   protected:
     using typename BinaryTree<Data>::Node;
     Node *node = nullptr;
-    StackLst<Node *> stack;
+    StackVec<const Node *> stack;
 
   public:
     // Specific constructors
@@ -357,23 +359,23 @@ namespace lasd
     /* ************************************************************************ */
 
     // Copy constructor
-    BTPostOrderIterator(const BTPostOrderIterator<Data> &);
+    BTPostOrderIterator(const BTPostOrderIterator &);
 
     // Move constructor
-    BTPostOrderIterator(BTPostOrderIterator<Data> &&) noexcept;
+    BTPostOrderIterator(BTPostOrderIterator &&) noexcept;
 
     /* ************************************************************************ */
 
     // Destructor
-    ~BTPostOrderIterator();
+    virtual ~BTPostOrderIterator() = default;
 
     /* ************************************************************************ */
 
     // Copy assignment
-    BTPostOrderIterator &operator=(const BTPostOrderIterator<Data> &);
+    BTPostOrderIterator &operator=(const BTPostOrderIterator &);
 
     // Move assignment
-    BTPostOrderIterator &operator=(BTPostOrderIterator<Data> &&) noexcept;
+    BTPostOrderIterator &operator=(BTPostOrderIterator &&) noexcept;
 
     /* ************************************************************************ */
 
@@ -399,7 +401,7 @@ namespace lasd
 
     // Specific member functions (inherited from ResettableIterator)
 
-    void Reset() const noexcept; // (should not throw exceptions)
+    void Reset() noexcept override; // (should not throw exceptions)
   };
 
   /* ************************************************************************** */
@@ -410,21 +412,19 @@ namespace lasd
 
   private:
   protected:
-    using typename MutableBinaryTree<Data>::MutableNode;
-    MutableNode *node = nullptr;
-    StackLst<MutableNode *> stack;
+    using BTPostOrderIterator<Data>::stack;
 
   public:
     // Specific constructors
-    BTPostOrderMutableIterator(MutableBinaryTree &&); // An iterator over a given mutable binary tree
+    BTPostOrderMutableIterator(MutableBinaryTree<Data> &); // An iterator over a given mutable binary tree
 
     /* ************************************************************************ */
 
     // Copy constructor
-    BTPostOrderMutableIterator(const BTPostOrderMutableIterator<Data> &);
+    BTPostOrderMutableIterator(const BTPostOrderMutableIterator &);
 
     // Move constructor
-    BTPostOrderMutableIterator(BTPostOrderMutableIterator<Data> &&);
+    BTPostOrderMutableIterator(BTPostOrderMutableIterator &&);
 
     /* ************************************************************************ */
 
@@ -434,10 +434,10 @@ namespace lasd
     /* ************************************************************************ */
 
     // Copy assignment
-    BTPostOrderMutableIterator &operator=(const BTPostOrderMutableIterator<Data>);
+    BTPostOrderMutableIterator &operator=(const BTPostOrderMutableIterator &);
 
     // Move assignment
-    BTPostOrderMutableIterator &operator=(BTPostOrderMutableIterator<Data> &&) noexcept;
+    BTPostOrderMutableIterator &operator=(BTPostOrderMutableIterator &&) noexcept;
 
     /* ************************************************************************ */
 
@@ -462,7 +462,7 @@ namespace lasd
   protected:
     using typename BinaryTree<Data>::Node;
     Node *node = nullptr;
-    StackLst<Node *> stack;
+    StackVec<const Node *> stack;
 
   public:
     // Specific constructors
@@ -471,23 +471,23 @@ namespace lasd
     /* ************************************************************************ */
 
     // Copy constructor
-    BTInOrderIterator(const BTInOrderIterator<Data> &);
+    BTInOrderIterator(const BTInOrderIterator &);
 
     // Move constructor
-    BTInOrderIterator(BTInOrderIterator<Data> &&) noexcept;
+    BTInOrderIterator(BTInOrderIterator &&) noexcept;
 
     /* ************************************************************************ */
 
     // Destructor
-    ~BTInOrderIterator();
+    virtual ~BTInOrderIterator() = default;
 
     /* ************************************************************************ */
 
     // Copy assignment
-    BTInOrderIterator &operator=(const BTInOrderIterator<Data> &);
+    BTInOrderIterator &operator=(const BTInOrderIterator &);
 
     // Move assignment
-    BTInOrderIterator &operator=(BTInOrderIterator<Data> &&) noexcept;
+    BTInOrderIterator &operator=(BTInOrderIterator &&) noexcept;
 
     /* ************************************************************************ */
 
@@ -513,7 +513,7 @@ namespace lasd
 
     // Specific member functions (inherited from ResettableIterator)
 
-    void Reset() const noexcept; // (should not throw exceptions)
+    void Reset() noexcept override; // (should not throw exceptions)
   };
 
   /* ************************************************************************** */
@@ -524,21 +524,19 @@ namespace lasd
 
   private:
   protected:
-    using typename MutableBinaryTree<Data>::MutableNode;
-    MutableNode *node = nullptr;
-    StackLst<MutableNode *> stack;
+    using BTInOrderIterator<Data>::stack;
 
   public:
     // Specific constructors
-    BTInOrderMutableIterator(MutableBinaryTree &&); // An iterator over a given mutable binary tree
+    BTInOrderMutableIterator(MutableBinaryTree<Data> &); // An iterator over a given mutable binary tree
 
     /* ************************************************************************ */
 
     // Copy constructor
-    BTInOrderMutableIterator(const BTInOrderMutableIterator<Data> &);
+    BTInOrderMutableIterator(const BTInOrderMutableIterator &);
 
     // Move constructor
-    BTInOrderMutableIterator(BTInOrderMutableIterator<Data> &&);
+    BTInOrderMutableIterator(BTInOrderMutableIterator &&);
 
     /* ************************************************************************ */
 
@@ -548,10 +546,10 @@ namespace lasd
     /* ************************************************************************ */
 
     // Copy assignment
-    BTInOrderMutableIterator &operator=(const BTInOrderMutableIterator<Data>);
+    BTInOrderMutableIterator &operator=(const BTInOrderMutableIterator);
 
     // Move assignment
-    BTInOrderMutableIterator &operator=(BTInOrderMutableIterator<Data> &&) noexcept;
+    BTInOrderMutableIterator &operator=(BTInOrderMutableIterator &&) noexcept;
 
     /* ************************************************************************ */
 
@@ -569,119 +567,112 @@ namespace lasd
   /* ************************************************************************** */
 
   template <typename Data>
-  class BTBreadthIterator
+  class BTBreadthIterator : virtual public ForwardIterator<Data>, virtual public ResettableIterator<Data>
   {
-    // Must extend ForwardIterator<Data>,
-    //             ResettableIterator<Data>
 
   private:
-    // ...
-
   protected:
-    // ...
+    using typename BinaryTree<Data>::Node;
+    const Node *root = nullptr;
+    QueueVec<Node *> que;
 
   public:
     // Specific constructors
-    // BTBreadthIterator(argument) specifiers; // An iterator over a given binary tree
+    BTBreadthIterator(const BinaryTree<Data> &); // An iterator over a given binary tree
 
     /* ************************************************************************ */
 
     // Copy constructor
-    // BTBreadthIterator(argument) specifiers;
+    BTBreadthIterator(const BTBreadthIterator &);
 
     // Move constructor
-    // BTBreadthIterator(argument) specifiers;
+    BTBreadthIterator(BTBreadthIterator &&) noexcept;
 
     /* ************************************************************************ */
 
     // Destructor
-    // ~BTBreadthIterator() specifiers;
+    virtual ~BTBreadthIterator() = default;
 
     /* ************************************************************************ */
 
     // Copy assignment
-    // type operator=(argument) specifiers;
+    BTBreadthIterator &operator=(const BTBreadthIterator &);
 
     // Move assignment
-    // type operator=(argument) specifiers;
+    BTBreadthIterator &operator=(BTBreadthIterator &&) noexcept;
 
     /* ************************************************************************ */
 
     // Comparison operators
-    // type operator==(argument) specifiers;
-    // type operator!=(argument) specifiers;
+    bool operator==(const BTBreadthIterator &) const noexcept;
+    bool operator!=(const BTBreadthIterator &) const noexcept;
 
     /* ************************************************************************ */
 
     // Specific member functions (inherited from Iterator)
 
-    // type operator*() specifiers; // (throw std::out_of_range when terminated)
+    const Data &operator*() const override; // (throw std::out_of_range when terminated)
 
-    // type Terminated() specifiers; // (should not throw exceptions)
+    bool Terminated() const noexcept override; // (should not throw exceptions)
 
     /* ************************************************************************ */
 
     // Specific member functions (inherited from ForwardIterator)
 
-    // type operator++() specifiers; // (throw std::out_of_range when terminated)
+    ForwardIterator<Data> &operator++() override; // (throw std::out_of_range when terminated)
 
     /* ************************************************************************ */
 
     // Specific member functions (inherited from ResettableIterator)
 
-    // type Reset() const specifiers; // (should not throw exceptions)
+    void Reset() noexcept override; // (should not throw exceptions)
   };
 
   /* ************************************************************************** */
 
   template <typename Data>
-  class BTBreadthMutableIterator
+  class BTBreadthMutableIterator : virtual public MutableIterator<Data>, virtual public BTBreadthIterator<Data>
   {
-    // Must extend MutableIterator<Data>,
-    //             BTBreadthIterator<Data>
-
   private:
-    // ...
-
   protected:
-    // ...
+    using BTBreadthIterator<Data>::que;
 
   public:
     // Specific constructors
-    // BTBreadthMutableIterator(argument) specifiers; // An iterator over a given mutable binary tree
+    BTBreadthMutableIterator(MutableBinaryTree<Data> &); // An iterator over a given mutable binary tree
 
     /* ************************************************************************ */
 
     // Copy constructor
-    // BTBreadthMutableIterator(argument) specifiers;
+    BTBreadthMutableIterator(const BTBreadthMutableIterator &);
 
     // Move constructor
-    // BTBreadthMutableIterator(argument) specifiers;
+    BTBreadthMutableIterator(BTBreadthMutableIterator &&) noexcept;
 
     /* ************************************************************************ */
 
     // Destructor
-    // ~BTBreadthMutableIterator() specifiers;
+    ~BTBreadthMutableIterator();
 
     /* ************************************************************************ */
 
     // Copy assignment
-    // type operator=(argument) specifiers;
+    BTBreadthMutableIterator &operator=(const BTBreadthMutableIterator &);
 
     // Move assignment
-    // type operator=(argument) specifiers;
+    BTBreadthMutableIterator &operator=(BTBreadthMutableIterator &&);
 
     /* ************************************************************************ */
 
     // Comparison operators
-    // type operator==(argument) specifiers;
-    // type operator!=(argument) specifiers;
+    bool operator==(const BTBreadthMutableIterator &) const noexcept;
+    bool operator!=(const BTBreadthMutableIterator &) const noexcept;
 
     /* ************************************************************************ */
 
     // Specific member functions (inherited from MutableIterator)
 
-    // type operator*() specifiers; // (throw std::out_of_range when terminated)
+    Data &operator*() override; // (throw std::out_of_range when terminated)
   };
 
   /* ************************************************************************** */
