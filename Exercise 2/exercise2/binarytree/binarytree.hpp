@@ -126,11 +126,11 @@ namespace lasd
     virtual void BreadthTraverse(TraverseFun) const override; // Override BreadthTraversableContainer member
 
   protected:
-    void Traverse(const Node *, const TraverseFun&) const;
-    void PostOrderTraverse(const Node *, const TraverseFun&) const;
-    void InOrderTraverse(const Node *, const TraverseFun&) const;
-    //void BreadthTraverse(const Node *, const TraverseFun&) const;
-
+    void Traverse(const Node &, const TraverseFun &) const;
+    void PostOrderTraverse(const Node &, const TraverseFun &) const;
+    void InOrderTraverse(const Node &, const TraverseFun &) const;
+    // void BreadthTraverse(const Node &, const TraverseFun&) const;
+    bool comparison(const Node &a, const Node &b) const noexcept;
   };
 
   /* ************************************************************************** */
@@ -225,7 +225,9 @@ namespace lasd
     virtual void BreadthMap(MapFun) override; // Override BreadthMappableContainer member
 
   protected:
-    // Auxiliary functions, if necessary!
+    void Map(const Node &, const MapFun &);
+    void PostOrderMap(const Node &, const MapFun &);
+    void InOrderMap(const Node &, const MapFun &);
   };
 
   /* ************************************************************************** */
@@ -238,7 +240,7 @@ namespace lasd
   protected:
     using typename BinaryTree<Data>::Node;
     Node *node = nullptr;
-    StackVec<const Node *> stack;
+    StackVec<const Node &> stack;
 
   public:
     // Specific constructors
@@ -350,7 +352,7 @@ namespace lasd
   protected:
     using typename BinaryTree<Data>::Node;
     Node *node = nullptr;
-    StackVec<const Node *> stack;
+    StackVec<const Node &> stack;
 
   public:
     // Specific constructors
@@ -462,7 +464,7 @@ namespace lasd
   protected:
     using typename BinaryTree<Data>::Node;
     Node *node = nullptr;
-    StackVec<const Node *> stack;
+    StackVec<const Node &> stack;
 
   public:
     // Specific constructors
@@ -573,7 +575,7 @@ namespace lasd
   private:
   protected:
     using typename BinaryTree<Data>::Node;
-    const Node *root = nullptr;
+    const Node &root = nullptr;
     QueueVec<Node *> que;
 
   public:
