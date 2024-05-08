@@ -239,8 +239,9 @@ namespace lasd
   private:
   protected:
     using typename BinaryTree<Data>::Node;
-    Node *node = nullptr;
-    StackVec<const Node &> stack;
+    const Node *root = nullptr;
+    const Node *node = nullptr;
+    StackVec<const Node *> stack;
 
   public:
     // Specific constructors
@@ -279,7 +280,7 @@ namespace lasd
 
     const Data &operator*() const override; // (throw std::out_of_range when terminated)
 
-    bool Terminated() noexcept override; // (should not throw exceptions)
+    bool Terminated() const noexcept override; // (should not throw exceptions)
 
     /* ************************************************************************ */
 
@@ -302,6 +303,8 @@ namespace lasd
 
   private:
   protected:
+    using BTPreOrderIterator<Data>::root;
+    using BTPreOrderIterator<Data>::node;
     using BTPreOrderIterator<Data>::stack;
 
   public:
@@ -314,12 +317,12 @@ namespace lasd
     BTPreOrderMutableIterator(const BTPreOrderMutableIterator &);
 
     // Move constructor
-    BTPreOrderMutableIterator(BTPreOrderMutableIterator &&);
+    BTPreOrderMutableIterator(BTPreOrderMutableIterator &&) noexcept;
 
     /* ************************************************************************ */
 
     // Destructor
-    ~BTPreOrderMutableIterator();
+    virtual ~BTPreOrderMutableIterator() = default;
 
     /* ************************************************************************ */
 
@@ -351,8 +354,11 @@ namespace lasd
   private:
   protected:
     using typename BinaryTree<Data>::Node;
-    Node *node = nullptr;
-    StackVec<const Node &> stack;
+    const Node *root = nullptr;
+    const Node *node = nullptr;
+    StackVec<const Node *> stack;
+
+    const Node *bottomLLeaf(const Node *);
 
   public:
     // Specific constructors
@@ -391,7 +397,7 @@ namespace lasd
 
     const Data &operator*() const override; // (throw std::out_of_range when terminated)
 
-    bool Terminated() noexcept override; // (should not throw exceptions)
+    bool Terminated() const noexcept override; // (should not throw exceptions)
 
     /* ************************************************************************ */
 
@@ -414,7 +420,10 @@ namespace lasd
 
   private:
   protected:
+    using BTPostOrderIterator<Data>::root;
+    using BTPostOrderIterator<Data>::node;
     using BTPostOrderIterator<Data>::stack;
+    using BTPostOrderIterator<Data>::bottomLLeaf;
 
   public:
     // Specific constructors
@@ -426,12 +435,12 @@ namespace lasd
     BTPostOrderMutableIterator(const BTPostOrderMutableIterator &);
 
     // Move constructor
-    BTPostOrderMutableIterator(BTPostOrderMutableIterator &&);
+    BTPostOrderMutableIterator(BTPostOrderMutableIterator &&) noexcept;
 
     /* ************************************************************************ */
 
     // Destructor
-    ~BTPostOrderMutableIterator();
+    virtual ~BTPostOrderMutableIterator() = default;
 
     /* ************************************************************************ */
 
@@ -463,8 +472,11 @@ namespace lasd
   private:
   protected:
     using typename BinaryTree<Data>::Node;
-    Node *node = nullptr;
-    StackVec<const Node &> stack;
+    const Node *root = nullptr;
+    const Node *node = nullptr;
+    StackVec<const Node *> stack;
+
+    const Node *LeftLeaf(const Node *);
 
   public:
     // Specific constructors
@@ -503,7 +515,7 @@ namespace lasd
 
     const Data &operator*() const override; // (throw std::out_of_range when terminated)
 
-    bool Terminated() noexcept override; // (should not throw exceptions)
+    bool Terminated() const noexcept override; // (should not throw exceptions)
 
     /* ************************************************************************ */
 
@@ -526,7 +538,10 @@ namespace lasd
 
   private:
   protected:
+    using BTInOrderIterator<Data>::root;
+    using BTInOrderIterator<Data>::node;
     using BTInOrderIterator<Data>::stack;
+    using BTInOrderIterator<Data>::LeftLeaf;
 
   public:
     // Specific constructors
@@ -538,17 +553,17 @@ namespace lasd
     BTInOrderMutableIterator(const BTInOrderMutableIterator &);
 
     // Move constructor
-    BTInOrderMutableIterator(BTInOrderMutableIterator &&);
+    BTInOrderMutableIterator(BTInOrderMutableIterator &&) noexcept;
 
     /* ************************************************************************ */
 
     // Destructor
-    ~BTInOrderMutableIterator();
+    virtual ~BTInOrderMutableIterator() = default;
 
     /* ************************************************************************ */
 
     // Copy assignment
-    BTInOrderMutableIterator &operator=(const BTInOrderMutableIterator);
+    BTInOrderMutableIterator &operator=(const BTInOrderMutableIterator &);
 
     // Move assignment
     BTInOrderMutableIterator &operator=(BTInOrderMutableIterator &&) noexcept;
@@ -575,7 +590,8 @@ namespace lasd
   private:
   protected:
     using typename BinaryTree<Data>::Node;
-    const Node &root = nullptr;
+    const Node *root = nullptr;
+    const Node *node = nullptr;
     QueueVec<Node *> que;
 
   public:
@@ -654,7 +670,7 @@ namespace lasd
     /* ************************************************************************ */
 
     // Destructor
-    ~BTBreadthMutableIterator();
+    virtual ~BTBreadthMutableIterator() = default;
 
     /* ************************************************************************ */
 
