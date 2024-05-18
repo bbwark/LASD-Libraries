@@ -30,14 +30,10 @@ namespace lasd
       friend class BinaryTreeVec<Data>;
 
     private:
-      // ...
-
     protected:
-      // ...
-
     public:
       BinaryTreeVec<Data> *bt = nullptr;
-      ulong index;
+      unsigned long index;
 
       NodeVec()
       {
@@ -45,8 +41,8 @@ namespace lasd
         index = 0;
       }
 
-      NodeVec(const Data &, ulong, BinaryTreeVec<Data> *);
-      NodeVec(Data &&, ulong, BinaryTreeVec<Data> *);
+      NodeVec(const Data &, unsigned long, BinaryTreeVec<Data> *);
+      NodeVec(Data &&, unsigned long, BinaryTreeVec<Data> *);
 
       virtual ~NodeVec() = default;
 
