@@ -44,7 +44,7 @@ namespace lasd
     virtual void Dequeue() = 0;
     virtual Data HeadNDequeue() = 0;
     virtual void Enqueue(const Data &) = 0;
-    virtual void Enqueue(Data &&) noexcept = 0;
+    virtual void Enqueue(Data &&) = 0;
   };
 
   /* ************************************************************************** */
