@@ -66,7 +66,7 @@ namespace lasd
     }
 
     template <typename Data>
-    inline void QueueLst<Data>::Enqueue(Data &&data) noexcept
+    inline void QueueLst<Data>::Enqueue(Data &&data) 
     {
         return List<Data>::InsertAtBack(std::move(data));
     }

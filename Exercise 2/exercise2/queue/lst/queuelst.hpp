@@ -69,7 +69,7 @@ namespace lasd
     inline void Dequeue() override;
     inline Data HeadNDequeue() override;
     inline void Enqueue(const Data &) override;
-    inline void Enqueue(Data &&) noexcept override;
+    inline void Enqueue(Data &&) override;
 
     /* ************************************************************************ */
 
