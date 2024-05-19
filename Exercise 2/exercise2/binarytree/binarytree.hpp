@@ -60,7 +60,10 @@ namespace lasd
 
       virtual const Data &Element() const noexcept = 0; // Immutable access to the element (concrete function should not throw exceptions)
 
-      virtual bool IsLeaf() const noexcept = 0;        // (concrete function should not throw exceptions)
+      virtual bool IsLeaf() const noexcept
+      {
+        return ((!HasLeftChild()) && (!HasRightChild()));
+      }; // (concrete function should not throw exceptions)
       virtual bool HasLeftChild() const noexcept = 0;  // (concrete function should not throw exceptions)
       virtual bool HasRightChild() const noexcept = 0; // (concrete function should not throw exceptions)
 
@@ -126,11 +129,10 @@ namespace lasd
     virtual void BreadthTraverse(TraverseFun) const override; // Override BreadthTraversableContainer member
 
   protected:
-    void Traverse(const Node &, const TraverseFun &) const;
-    void PostOrderTraverse(const Node &, const TraverseFun &) const;
-    void InOrderTraverse(const Node &, const TraverseFun &) const;
+    void Traverse(const Node *, const TraverseFun &) const;
+    void PostOrderTraverse(const Node *, const TraverseFun &) const;
+    void InOrderTraverse(const Node *, const TraverseFun &) const;
     // void BreadthTraverse(const Node &, const TraverseFun&) const;
-    bool comparison(const Node &a, const Node &b) const noexcept;
   };
 
   /* ************************************************************************** */
@@ -169,8 +171,8 @@ namespace lasd
 
       virtual Data &Element() noexcept = 0; // Mutable access to the element (concrete function should not throw exceptions)
 
-      virtual MutableNode &LeftChild() = 0; // (concrete function must throw std::out_of_range when not existent)
-      virtual MutableNode &LeftChild() = 0; // (concrete function must throw std::out_of_range when not existent)
+      virtual MutableNode &LeftChild() = 0;  // (concrete function must throw std::out_of_range when not existent)
+      virtual MutableNode &RightChild() = 0; // (concrete function must throw std::out_of_range when not existent)
     };
 
     /* ************************************************************************ */
@@ -225,9 +227,10 @@ namespace lasd
     virtual void BreadthMap(MapFun) override; // Override BreadthMappableContainer member
 
   protected:
-    void Map(const Node &, const MapFun &);
-    void PostOrderMap(const Node &, const MapFun &);
-    void InOrderMap(const Node &, const MapFun &);
+    void Map(MutableNode *, MapFun &);
+    void PostOrderMap(MutableNode *, MapFun &);
+    void InOrderMap(MutableNode *, MapFun &);
+    void BreadthMap(MutableNode *, MapFun &);
   };
 
   /* ************************************************************************** */
@@ -238,14 +241,13 @@ namespace lasd
 
   private:
   protected:
-    using typename BinaryTree<Data>::Node;
-    const Node *root = nullptr;
-    const Node *node = nullptr;
-    StackVec<const Node *> stack;
+    const typename BinaryTree<Data>::Node *root = nullptr;
+    const typename BinaryTree<Data>::Node *node = nullptr;
+    StackVec<const typename BinaryTree<Data>::Node *> stack;
 
   public:
     // Specific constructors
-    BTPreOrderIterator(const BinaryTree &); // An iterator over a given binary tree
+    BTPreOrderIterator(const BinaryTree<Data> &); // An iterator over a given binary tree
 
     /* ************************************************************************ */
 
@@ -353,16 +355,15 @@ namespace lasd
 
   private:
   protected:
-    using typename BinaryTree<Data>::Node;
-    const Node *root = nullptr;
-    const Node *node = nullptr;
-    StackVec<const Node *> stack;
+    const typename BinaryTree<Data>::Node *root = nullptr;
+    const typename BinaryTree<Data>::Node *node = nullptr;
+    StackVec<const typename BinaryTree<Data>::Node *> stack;
 
-    const Node *bottomLLeaf(const Node *);
+    const typename BinaryTree<Data>::Node *bottomLLeaf(const typename BinaryTree<Data>::Node *);
 
   public:
     // Specific constructors
-    BTPostOrderIterator(const BinaryTree &); // An iterator over a given binary tree
+    BTPostOrderIterator(const BinaryTree<Data> &); // An iterator over a given binary tree
 
     /* ************************************************************************ */
 
@@ -471,16 +472,15 @@ namespace lasd
 
   private:
   protected:
-    using typename BinaryTree<Data>::Node;
-    const Node *root = nullptr;
-    const Node *node = nullptr;
-    StackVec<const Node *> stack;
+    const typename BinaryTree<Data>::Node *root = nullptr;
+    const typename BinaryTree<Data>::Node *node = nullptr;
+    StackVec<const typename BinaryTree<Data>::Node *> stack;
 
-    const Node *LeftLeaf(const Node *);
+    const typename BinaryTree<Data>::Node *LeftLeaf(const typename BinaryTree<Data>::Node *);
 
   public:
     // Specific constructors
-    BTInOrderIterator(const BinaryTree &); // An iterator over a given binary tree
+    BTInOrderIterator(const BinaryTree<Data> &); // An iterator over a given binary tree
 
     /* ************************************************************************ */
 
@@ -589,10 +589,9 @@ namespace lasd
 
   private:
   protected:
-    using typename BinaryTree<Data>::Node;
-    const Node *root = nullptr;
-    const Node *node = nullptr;
-    QueueVec<Node *> que;
+    const typename BinaryTree<Data>::Node *root = nullptr;
+    const typename BinaryTree<Data>::Node *node = nullptr;
+    QueueVec<const typename BinaryTree<Data>::Node *> que;
 
   public:
     // Specific constructors
@@ -653,6 +652,8 @@ namespace lasd
   {
   private:
   protected:
+    using BTBreadthIterator<Data>::root;
+    using BTBreadthIterator<Data>::node;
     using BTBreadthIterator<Data>::que;
 
   public:
@@ -678,7 +679,7 @@ namespace lasd
     BTBreadthMutableIterator &operator=(const BTBreadthMutableIterator &);
 
     // Move assignment
-    BTBreadthMutableIterator &operator=(BTBreadthMutableIterator &&);
+    BTBreadthMutableIterator &operator=(BTBreadthMutableIterator &&) noexcept;
 
     /* ************************************************************************ */
 

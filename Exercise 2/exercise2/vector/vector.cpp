@@ -1,3 +1,5 @@
+#include <stdexcept>
+#include <iostream>
 
 namespace lasd
 {

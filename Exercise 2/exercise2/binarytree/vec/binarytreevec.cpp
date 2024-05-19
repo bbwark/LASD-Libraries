@@ -4,6 +4,8 @@ namespace lasd
 
     /* ************************************************************************** */
 
+    // ------------ NODE VEC -------------
+
     template <typename Data>
     BinaryTreeVec<Data>::NodeVec::NodeVec(const Data &data, unsigned long i, BinaryTreeVec<Data> *bt)
     {
@@ -48,7 +50,7 @@ namespace lasd
             return (bt->nodes[index * 2 + 1]);
         }
         else
-            throw std::out_of_range("Err: No LeftChild Found");
+            throw std::out_of_range("Err: No Left Child Found");
     }
 
     template <typename Data>
@@ -59,7 +61,7 @@ namespace lasd
             return (bt->nodes[index * 2 + 1]);
         }
         else
-            throw std::out_of_range("Err: No LeftChild Found");
+            throw std::out_of_range("Err: No Left Child Found");
     }
 
     template <typename Data>
@@ -70,7 +72,7 @@ namespace lasd
             return (bt->nodes[index * 2 + 2]);
         }
         else
-            throw std::out_of_range("Err: No RightChild Found");
+            throw std::out_of_range("Err: No Right Child Found");
     }
 
     template <typename Data>
@@ -81,8 +83,10 @@ namespace lasd
             return (bt->nodes[index * 2 + 2]);
         }
         else
-            throw std::out_of_range("Err: No RightChild Found");
+            throw std::out_of_range("Err: No Right Child Found");
     }
+
+    // ----------- BINARY TREE VEC --------------
 
     template <typename Data>
     BinaryTreeVec<Data>::BinaryTreeVec(const TraversableContainer<Data> &cont)
@@ -201,7 +205,6 @@ namespace lasd
             throw std::length_error("Err: Tree is Empty");
         }
     }
-
     /* ************************************************************************** */
 
 }

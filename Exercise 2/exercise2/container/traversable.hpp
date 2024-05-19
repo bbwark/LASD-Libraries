@@ -234,13 +234,13 @@ namespace lasd
 
     using typename TraversableContainer<Data>::TraverseFun;
 
-    virtual void BreadthOrderTraverse(TraverseFun traverseFun) const = 0;
+    virtual void BreadthTraverse(TraverseFun traverseFun) const = 0;
 
     template <typename Accumulator>
     using FoldFun = typename TraversableContainer<Data>::FoldFun<Accumulator>;
 
     template <typename Accumulator>
-    Accumulator BreadthOrderFold(FoldFun<Accumulator> foldFun, Accumulator accumulator) const;
+    Accumulator BreadthFold(FoldFun<Accumulator> foldFun, Accumulator accumulator) const;
 
     /* ************************************************************************ */
 

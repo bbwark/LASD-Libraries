@@ -21,16 +21,16 @@ namespace lasd
   private:
   protected:
     struct NodeVec : virtual MutableBinaryTree<Data>::MutableNode
-    {
+    { // Must extend MutableNode
+
       friend class BinaryTreeVec<Data>;
 
     private:
-    protected:
-    public:
-      friend class BinaryTreeVec<Data>;
+      // ...
 
-    private:
     protected:
+      // ...
+
     public:
       BinaryTreeVec<Data> *bt = nullptr;
       unsigned long index;
@@ -177,8 +177,37 @@ namespace lasd
       Vector<Data>::Map(fun);
     }; // Override BreadthMappableContainer member
 
-  protected:
     // Auxiliary functions, if necessary!
+
+    void PreOrderTraverse(TraverseFun fun) const override
+    {
+      BinaryTree<Data>::PreOrderTraverse(fun);
+    }
+
+    void PostOrderTraverse(TraverseFun fun) const override
+    {
+      BinaryTree<Data>::PostOrderTraverse(fun);
+    }
+
+    void Traverse(TraverseFun fun) const override
+    {
+      BinaryTree<Data>::Traverse(fun);
+    }
+
+    void PreOrderMap(MapFun fun) override
+    {
+      MutableBinaryTree<Data>::PreOrderMap(fun);
+    }
+
+    void PostOrderMap(MapFun fun) override
+    {
+      MutableBinaryTree<Data>::PostOrderMap(fun);
+    }
+
+    void Map(MapFun fun) override
+    {
+      MutableBinaryTree<Data>::Map(fun);
+    }
   };
 
   /* ************************************************************************** */
