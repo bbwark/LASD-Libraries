@@ -20,84 +20,117 @@ class QueueVec : virtual public Queue<Data>, virtual protected Vector<Data>{
 
 private:
 
+  // ...
+
 protected:
 
-  ulong head = 0;
-  ulong tail = 0;
-
-  using Vector<Data>::size;
+  // using Vector<Data>::???;
   using Vector<Data>::elements;
+  using Vector<Data>::size;
+  int head = 0;
+  int tail = -1;
+  ulong effectiveSize = 0;
+  // ...
 
 public:
 
   // Default constructor
-  QueueVec() : Vector<Data>(4) {};
+  // QueueVec() specifier;
+
+  QueueVec();
 
   /* ************************************************************************ */
 
   // Specific constructor
-  QueueVec(const TraversableContainer<Data>&); // A stack obtained from a TraversableContainer
-  QueueVec(MappableContainer<Data>&&); // A stack obtained from a MappableContainer
+  // QueueVec(argument) specifiers; // A stack obtained from a TraversableContainer
+  // QueueVec(argument) specifiers; // A stack obtained from a MappableContainer
+
+  QueueVec(const TraversableContainer<Data> &container) : Vector<Data>(container){};
+  QueueVec(MappableContainer<Data> &&container) : Vector<Data>(std::move(container)){};
 
   /* ************************************************************************ */
 
   // Copy constructor
-  QueueVec(const QueueVec& que) : Vector<Data>(que), head(que.head), tail(que.tail) {};
+  // QueueVec(argument);
+
+  QueueVec(const QueueVec<Data> &);
 
   // Move constructor
-  QueueVec(QueueVec&&) noexcept;
+  // QueueVec(argument);
+
+  QueueVec(QueueVec<Data> &&) noexcept;
 
   /* ************************************************************************ */
 
   // Destructor
-  virtual ~QueueVec() = default;
+  // ~QueueVec() specifier;
+
+  ~QueueVec() = default;
 
   /* ************************************************************************ */
 
   // Copy assignment
-  QueueVec& operator=(const QueueVec&);
+  // type operator=(argument);
+
+  QueueVec &operator=(const QueueVec<Data> &);
 
   // Move assignment
-  QueueVec& operator=(QueueVec&&) noexcept;
+  // type operator=(argument);
+
+  QueueVec &operator=(QueueVec<Data> &&) noexcept;
 
   /* ************************************************************************ */
 
   // Comparison operators
-  bool operator==(const QueueVec&) const noexcept;
-  inline bool operator!=(const QueueVec&) const noexcept;
+  // type operator==(argument) specifiers;
+  // type operator!=(argument) specifiers;
+
+  bool operator==(const QueueVec<Data> &) const noexcept;
+  bool operator!=(const QueueVec<Data> &) const noexcept;
 
   /* ************************************************************************ */
 
   // Specific member functions (inherited from Queue)
 
-  const Data& Head() const override; // Override Queue member (non-mutable version; must throw std::length_error when empty)
-  Data& Head() override; // Override Queue member (mutable version; must throw std::length_error when empty)
-  void Dequeue() override; // Override Queue member (must throw std::length_error when empty)
-  Data HeadNDequeue() override; // Override Queue member (must throw std::length_error when empty)
-  void Enqueue(const Data&) override; // Override Queue member (copy of the value)
-  void Enqueue(Data&&) override; // Override Queue member (move of the value)
+  // type Head() specifiers; // Override Queue member (non-mutable version; must throw std::length_error when empty)
+  // type Head() specifiers; // Override Queue member (mutable version; must throw std::length_error when empty)
+  // type Dequeue() specifiers; // Override Queue member (must throw std::length_error when empty)
+  // type HeadNDequeue() specifiers; // Override Queue member (must throw std::length_error when empty)
+  // type Enqueue(argument) specifiers; // Override Queue member (copy of the value)
+  // type Enqueue(argument) specifiers; // Override Queue member (move of the value)
+
+  inline const Data &Head() const override;
+  inline Data &Head() override;
+  inline void Dequeue() override;
+  inline Data HeadNDequeue() override;
+  inline void Enqueue(const Data &) override;
+  inline void Enqueue(Data &&) noexcept override;
 
   /* ************************************************************************ */
 
   // Specific member functions (inherited from Container)
 
-  inline bool Empty() const noexcept override; // Override Container member
+  // type Empty() specifiers; // Override Container member
 
-  inline ulong Size() const noexcept override; // Override Container member
+  bool Empty() const noexcept override;
+
+  // type Size() specifiers; // Override Container member
+
+  ulong Size() const noexcept override;
 
   /* ************************************************************************ */
 
   // Specific member function (inherited from ClearableContainer)
 
-  void Clear() noexcept override; // Override ClearableContainer member
+  // type Clear() specifiers; // Override ClearableContainer member
+
+  void Clear() override;
 
 protected:
 
-  // Auxiliary functions
-
-  void Expand();
+  void Resize();
   void Reduce();
-  void Resize(ulong, ulong);
+  // Auxiliary functions, if necessary!
 
 };
 
