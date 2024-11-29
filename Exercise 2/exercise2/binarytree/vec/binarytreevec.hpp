@@ -74,7 +74,7 @@ protected:
 
     Data element;
     Vector<NodeVec*> *pvec;
-    ulong idxNode;
+    unsigned long idxNode;
 
   };
 

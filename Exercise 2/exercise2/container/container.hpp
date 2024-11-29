@@ -19,7 +19,7 @@ protected:
   // ...
 
   /* ************************************************************************ */
-  ulong size = 0;
+  unsigned long size = 0;
   // Default constructor
   // Container() specifiers;
   Container() = default;
@@ -57,7 +57,7 @@ public:
   }
 
   // type Size() specifiers; // (concrete function should not throw exceptions)
-  virtual inline ulong Size() const noexcept{
+  virtual inline unsigned long Size() const noexcept{
     return size;
   }
 };
@@ -146,7 +146,7 @@ public:
 
   // type Resize(argument) specifiers;
   // Vedere se conviene definirlo o farlo puro.
-  virtual void Resize(ulong) = 0;
+  virtual void Resize(unsigned long) = 0;
   /* ************************************************************************ */
 
   // Specific member function (inherited from ClearableContainer)

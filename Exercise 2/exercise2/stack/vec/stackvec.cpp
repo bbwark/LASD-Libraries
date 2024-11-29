@@ -35,7 +35,7 @@ namespace lasd {
             return false;
         } else{
             bool result = true;
-            ulong idx = 0;
+            unsigned long idx = 0;
             while(result && idx < size){
                 if(elements[idx] != stackVec.elements[idx]){
                     result = false;
@@ -118,7 +118,7 @@ namespace lasd {
     }
     
     template <typename Data>
-    ulong StackVec<Data>::Size() const noexcept{
+    unsigned long StackVec<Data>::Size() const noexcept{
         return index;
     }
 

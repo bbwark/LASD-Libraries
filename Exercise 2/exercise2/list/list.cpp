@@ -157,8 +157,8 @@ namespace lasd {
 
     template <typename Data>
     void List<Data>::Clear(){
-        ulong cont = size;
-        for(ulong index = 0; index < cont; index++){
+        unsigned long cont = size;
+        for(unsigned long index = 0; index < cont; index++){
             RemoveFromFront();
         }
         size = 0;
@@ -206,23 +206,23 @@ namespace lasd {
     }
 
     template <typename Data>
-    const Data &List<Data>::operator[](const ulong index) const{
+    const Data &List<Data>::operator[](const unsigned long index) const{
         if(index >= size){
             throw std::out_of_range("Invalid Access at Index " + std::to_string(index));
         } else{
             Node *current = head;
-            for(ulong idx = 0; idx < index; ++idx, current = current -> next) {}
+            for(unsigned long idx = 0; idx < index; ++idx, current = current -> next) {}
             return current -> element;
         }
     }
 
     template <typename Data>
-    Data &List<Data>::operator[](const ulong index){
+    Data &List<Data>::operator[](const unsigned long index){
         if(index >= size){
             throw std::out_of_range("Invalid Access at Index " + std::to_string(index));
         } else{
             Node *current = head;
-            for(ulong idx = 0; idx < index; ++idx, current = current -> next) {}
+            for(unsigned long idx = 0; idx < index; ++idx, current = current -> next) {}
             return current -> element;
         }
     }
@@ -270,14 +270,14 @@ namespace lasd {
 
     template <typename Data>
     void List<Data>::PreOrderTraverse(TraverseFun traverseFun) const{
-        for(ulong index = 0; index < size; index++){
+        for(unsigned long index = 0; index < size; index++){
             traverseFun(operator[](index));
         }
     }
 
     template <typename Data>
     void List<Data>::PostOrderTraverse(TraverseFun traverseFun) const{
-        ulong index = size;
+        unsigned long index = size;
         while(index > 0){
             traverseFun(operator[](--index));
         }
@@ -290,14 +290,14 @@ namespace lasd {
 
     template <typename Data>
     void List<Data>::PreOrderMap(MapFun mapFun){
-        for(ulong index = 0; index < size; index++){
+        for(unsigned long index = 0; index < size; index++){
             mapFun(operator[](index));
         }
     }
 
     template <typename Data>
     void List<Data>::PostOrderMap(MapFun mapFun){
-        ulong index = size;
+        unsigned long index = size;
         while(index > 0){
             mapFun(operator[](--index));
         }

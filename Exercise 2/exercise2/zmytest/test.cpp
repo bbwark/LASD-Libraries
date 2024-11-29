@@ -1,12 +1,8 @@
-
 // #include "..."
 
 /* ************************************************************************** */
 
-#include <iostream>
 #include <random>
-#include <cassert>
-
 using namespace std;
 
 default_random_engine gen(random_device{}());
@@ -487,7 +483,7 @@ bool IteratorTest()
   cout << endl;
 
   lasd::SortableVector<int> vec(randNumb(gen) + 1);
-  for (ulong i = 0; i < vec.Size(); i++)
+  for (unsigned long i = 0; i < vec.Size(); i++)
   {
     vec[i] = randNumb(gen);
   }
@@ -567,7 +563,7 @@ bool BTVectorTest()
     testBTVec &= false;
   }
   lasd::Vector<double> vec1(randNumb(gen) + 1);
-  for (ulong i = 0; i < vec1.Size() - 1; i++)
+  for (unsigned long i = 0; i < vec1.Size() - 1; i++)
   {
     vec1[i] = randNumb(gen);
   }
@@ -601,7 +597,7 @@ bool BTVectorTest()
   cout << "Test: " << ++testNumber << ")" << " BTVec and (BTLnk and BTVec) are " << evaluateResult(testBTVec, accumulator2 != accumulator3, "Not Equals (Correct)", "Equals (Incorrect)") << endl;
 
   lasd::Vector<int> vec3(randNumb(gen) + 1);
-  for (ulong i = 0; i < vec3.Size(); i++)
+  for (unsigned long i = 0; i < vec3.Size(); i++)
   {
     vec3[i] = randNumb(gen);
   }
@@ -621,7 +617,7 @@ bool BTVectorTest()
 
   lasd::BinaryTreeVec<int> btvec7(std::move(lista));
   lasd::List<int> list(btvec7);
-  for (ulong i = 0; i < list.Size(); i++)
+  for (unsigned long i = 0; i < list.Size(); i++)
   {
     cout << "Test: " << ++testNumber << ")" << " Value From List in BTLnk " << list[i] << endl;
   }
@@ -714,7 +710,7 @@ bool BTListTest()
   }
 
   lasd::Vector<double> vec1(randNumb(gen) + 1);
-  for (ulong i = 0; i < vec1.Size() - 1; i++)
+  for (unsigned long i = 0; i < vec1.Size() - 1; i++)
   {
     vec1[i] = randNumb(gen);
   }
@@ -749,7 +745,7 @@ bool BTListTest()
   cout << "Test: " << ++testNumber << ")" << " BST and (BTLnk and BTVec) are " << evaluateResult(testBTLnk, accumulator2 != accumulator3, "Not Equals (Correct)", "Equals (Incorrect)") << endl;
 
   lasd::Vector<int> vec3(randNumb(gen) + 1);
-  for (ulong i = 0; i < vec3.Size(); i++)
+  for (unsigned long i = 0; i < vec3.Size(); i++)
   {
     vec3[i] = randNumb(gen);
   }
@@ -766,18 +762,18 @@ bool BTListTest()
   vector[1] = randNumb(gen);
   lasd::BinaryTreeLnk<int> btlnk7(std::move(vector));
   lasd::List<int> lista(btlnk7);
-  for (ulong i = 0; i < lista.Size(); i++)
+  for (unsigned long i = 0; i < lista.Size(); i++)
   {
     cout << "Test: " << ++testNumber << ")" << " Value From List in BTLnk: " << lista[i] << endl;
   }
   lasd::Vector<int> vettore(std::move(btlnk7));
-  for (ulong i = 0; i < vettore.Size(); i++)
+  for (unsigned long i = 0; i < vettore.Size(); i++)
   {
     cout << "Test: " << ++testNumber << ")" << " Value From Vector in BTLnk: " << vettore[i] << endl;
   }
 
   lasd::Vector<int> vettore1((randNumb(gen) % 10) + 5);
-  for (ulong i = 0; i < vettore1.Size(); i++)
+  for (unsigned long i = 0; i < vettore1.Size(); i++)
   {
     vettore1[i] = randNumb(gen);
   }
@@ -839,7 +835,7 @@ bool BSTTest()
   cout << "Test: " << ++testNumber << ")" << " Max is " << evaluateResult(testBST, bst1.Max() == 1, "Correct", "Incorrect") << endl;
 
   lasd::Vector<int> vec2(randNumb(gen) + 1);
-  for (ulong i = 0; i < vec2.Size(); i++)
+  for (unsigned long i = 0; i < vec2.Size(); i++)
   {
     vec2[i] = randNumb(gen);
   }
@@ -890,7 +886,7 @@ bool BSTTest()
   cout << "Test: " << ++testNumber << ")" << " BST is " << evaluateResult(placeholder, bst4.Empty(), "Clear (Correct)", "Not Clear (Incorrect)") << endl;
 
   lasd::SortableVector<int> vec3(randNumb(gen) + 3);
-  for (ulong i = 0; i < vec3.Size(); i++)
+  for (unsigned long i = 0; i < vec3.Size(); i++)
   {
     vec3[i] = randNumb(gen);
   }
@@ -938,18 +934,18 @@ bool BSTTest()
   cout << "Test: " << ++testNumber << ")" << " BST Successor Test is " << evaluateResult(testBST, bst5.Successor(6) == 7, "Correct", "Incorrect") << endl;
 
   lasd::Vector<int> vettore(bst5);
-  for (ulong i = 0; i < vettore.Size(); i++)
+  for (unsigned long i = 0; i < vettore.Size(); i++)
   {
     cout << "Test: " << ++testNumber << ")" << " extracted value from Vector(BST): " << vettore[i] << endl;
   }
   lasd::List<int> lista(bst5);
-  for (ulong i = 0; i < lista.Size(); i++)
+  for (unsigned long i = 0; i < lista.Size(); i++)
   {
     cout << "Test: " << ++testNumber << ")" << " extracted value from List(BST): " << lista[i] << endl;
   }
 
   lasd::Vector<int> vettore1((randNumb(gen) % 10) + 5);
-  for (ulong i = 0; i < vettore1.Size(); i++)
+  for (unsigned long i = 0; i < vettore1.Size(); i++)
   {
     vettore1[i] = randNumb(gen);
   }

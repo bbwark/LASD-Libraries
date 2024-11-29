@@ -12,12 +12,12 @@ namespace lasd {
 
     template <typename Data>
     QueueVec<Data>::QueueVec(const TraversableContainer<Data> &container){
-        size = (ulong)container.Size() * 1.5;
+        size = (unsigned long)container.Size() * 1.5;
         if(size < 2){
             size = 2;
         }
         elements = new Data[size] {};
-        ulong index = 0;
+        unsigned long index = 0;
         container.Traverse(
             [this, &index](const Data &data){
                 elements[index] = data;
@@ -31,12 +31,12 @@ namespace lasd {
 
     template <typename Data>
     QueueVec<Data>::QueueVec(MappableContainer<Data> &&container){
-        size = (ulong)container.Size() * 1.5;
+        size = (unsigned long)container.Size() * 1.5;
         if(size < 2){
             size = 2;
         }
         elements = new Data[size] {};
-        ulong index = 0;
+        unsigned long index = 0;
         container.Map(
             [this, &index](Data &data){
                 elements[index] = std::move(data);
@@ -87,7 +87,7 @@ namespace lasd {
         if(Size() != queueVec.Size()){
             return false;
         } else{
-            for(ulong i = 0; i < Size(); i++){
+            for(unsigned long i = 0; i < Size(); i++){
                 if(elements[(i + head) % size] != queueVec.elements[(i + queueVec.head) % queueVec.size]){
                     return false;
                 }
@@ -161,7 +161,7 @@ namespace lasd {
     }
 
     template <typename Data>
-    ulong QueueVec<Data>::Size() const noexcept{
+    unsigned long QueueVec<Data>::Size() const noexcept{
         if(head <= tail){
             return (tail - head);
         } else{
@@ -182,7 +182,7 @@ namespace lasd {
     void QueueVec<Data>::Resize(){
         if(head > tail){
             Data *vector = new Data[size] {};
-            for(ulong i = 0; i < Size(); i++){
+            for(unsigned long i = 0; i < Size(); i++){
                 vector[i] = elements[(i + head) % size];
             }
             delete[] elements;
@@ -190,21 +190,21 @@ namespace lasd {
             tail = Size();
             head = 0;
         }
-        ulong newSize = size + (size / 2);
+        unsigned long newSize = size + (size / 2);
         Vector<Data>::Resize(newSize);
     }
 
     template <typename Data>
     void QueueVec<Data>::Reduce(){
         Data *vector = new Data[size] {};
-        for(ulong i = 0; i < Size(); i++){
+        for(unsigned long i = 0; i < Size(); i++){
             vector[i] = elements[(i + head) % size];
         }
         delete[] elements;
         elements = vector;
         tail = Size();
         head = 0;
-        ulong newSize = (size / 2);
+        unsigned long newSize = (size / 2);
         if(newSize < 2){
             newSize = 2;
         }

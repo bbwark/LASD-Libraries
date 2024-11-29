@@ -4,14 +4,14 @@ namespace lasd {
 
     //Specific Constructors.
     template <typename Data>
-    Vector<Data>::Vector(const ulong newSize){
+    Vector<Data>::Vector(const unsigned long newSize){
         elements = new Data[newSize]{};
         size = newSize;
     }
 
     template <typename Data>
     Vector<Data>::Vector(const TraversableContainer<Data> &container) : Vector(container.Size()){
-        ulong index = 0;
+        unsigned long index = 0;
         container.Traverse(
             [this, &index](const Data &data){
                 elements[index] = data;
@@ -22,7 +22,7 @@ namespace lasd {
 
     template <typename Data>
     Vector<Data>::Vector(MappableContainer<Data> &&container) : Vector(container.Size()){
-        ulong index = 0;
+        unsigned long index = 0;
         container.Map(
             [this, &index](Data &data){
                 elements[index] = std::move(data);
@@ -74,7 +74,7 @@ namespace lasd {
     template <typename Data>
     bool Vector<Data>::operator==(const Vector &vect) const noexcept{
         if(size == vect.size){
-            for(ulong index = 0; index < size; ++index){
+            for(unsigned long index = 0; index < size; ++index){
                 if(elements[index] != vect.elements[index]){
                     return false;
                 }
@@ -98,14 +98,14 @@ namespace lasd {
     }
 
     template <typename Data>
-    void Vector<Data>::Resize(const ulong newSize){
+    void Vector<Data>::Resize(const unsigned long newSize){
         if(newSize == 0){
             Clear();
         } else if(size != newSize){
             Data *tempElement = new Data[newSize]{};
-            ulong minimumSize;
+            unsigned long minimumSize;
             minimumSize = (size < newSize) ? size : newSize;
-            for(ulong index = 0; index < minimumSize; index++){
+            for(unsigned long index = 0; index < minimumSize; index++){
                 std::swap(elements[index], tempElement[index]);
             }
             std::swap(elements, tempElement);
@@ -115,7 +115,7 @@ namespace lasd {
     }
 
     template <typename Data>
-    const Data &Vector<Data>::operator[](const ulong index) const{
+    const Data &Vector<Data>::operator[](const unsigned long index) const{
         if(index < size){
             return elements[index];
         } else {
@@ -124,7 +124,7 @@ namespace lasd {
     }
 
     template <typename Data>
-    Data &Vector<Data>::operator[](const ulong index){
+    Data &Vector<Data>::operator[](const unsigned long index){
         if(index < size){
             return elements[index];
         } else {
@@ -170,14 +170,14 @@ namespace lasd {
 
     //Specific Constructors
     template <typename Data>
-    SortableVector<Data>::SortableVector(const ulong newSize){
+    SortableVector<Data>::SortableVector(const unsigned long newSize){
         elements = new Data[newSize]{};
         size = newSize;
     }
 
     template <typename Data>
     SortableVector<Data>::SortableVector(const TraversableContainer<Data> &container) : SortableVector(container.Size()){
-        ulong index = 0;
+        unsigned long index = 0;
         container.Traverse(
             [this, &index](const Data &data){
                 elements[index] = data;
@@ -188,7 +188,7 @@ namespace lasd {
 
     template <typename Data>
     SortableVector<Data>::SortableVector(MappableContainer<Data> &&container) : SortableVector(container.Size()){
-        ulong index = 0;
+        unsigned long index = 0;
         container.Map(
             [this, &index](Data &data){
                 elements[index] = std::move(data);

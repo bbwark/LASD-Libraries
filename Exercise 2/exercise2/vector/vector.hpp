@@ -1,4 +1,3 @@
-
 #ifndef VECTOR_HPP
 #define VECTOR_HPP
 
@@ -40,7 +39,7 @@ public:
   // Vector(argument) specifiers; // A vector with a given initial dimension
   // Vector(argument) specifiers; // A vector obtained from a TraversableContainer
   // Vector(argument) specifiers; // A vector obtained from a MappableContainer
-  Vector(const ulong);
+  Vector(const unsigned long);
   Vector(const TraversableContainer<Data> &);
   Vector(MappableContainer<Data> &&); 
   /* ************************************************************************ */
@@ -83,15 +82,15 @@ public:
   // Specific member function (inherited from ResizableContainer)
 
   // type Resize(argument) specifiers; // Override ResizableContainer member
-  void Resize(const ulong) override;
+  void Resize(const unsigned long) override;
   /* ************************************************************************ */
 
   // Specific member functions (inherited from LinearContainer)
 
   // type operator[](argument) specifiers; // Override (NonMutable) LinearContainer member (must throw std::out_of_range when out of range)
   // type operator[](argument) specifiers; // Override (Mutable) LinearContainer member (must throw std::out_of_range when out of range)
-  const Data &operator[](const ulong) const override;
-  Data &operator[](const ulong) override;
+  const Data &operator[](const unsigned long) const override;
+  Data &operator[](const unsigned long) override;
   // type Front() specifiers; // Override (NonMutable) LinearContainer member (must throw std::length_error when empty)
   // type Front() specifiers; // Override (Mutable) LinearContainer member (must throw std::length_error when empty)
   const Data &Front() const override;
@@ -136,7 +135,7 @@ public:
   // SortableVector(argument) specifiers; // A vector with a given initial dimension
   // SortableVector(argument) specifiers; // A vector obtained from a TraversableContainer
   // SortableVector(argument) specifiers; // A vector obtained from a MappableContainer
-  SortableVector(const ulong);
+  SortableVector(const unsigned long);
   SortableVector(const TraversableContainer<Data> &);
   SortableVector(MappableContainer<Data> &&); 
 
@@ -161,6 +160,9 @@ public:
   // Move assignment
   // type operator=(argument) specifiers;
   SortableVector &operator=(SortableVector<Data> &&) noexcept;
+
+  // Import the operator[] from Vector
+  using Vector<Data>::operator[];
 
 protected:
 

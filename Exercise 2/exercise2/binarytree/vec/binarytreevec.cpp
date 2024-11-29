@@ -115,7 +115,7 @@ namespace lasd {
     BinaryTreeVec<Data>::BinaryTreeVec(const TraversableContainer<Data> &container){
         Vector<Data> vector(container);
         vec.Resize(container.Size());
-        for(ulong idx = 0; idx < container.Size(); idx++){
+        for(unsigned long idx = 0; idx < container.Size(); idx++){
             vec[idx] = new NodeVec();
             vec[idx] -> element = vector[idx];
             vec[idx] -> idxNode = idx;
@@ -129,7 +129,7 @@ namespace lasd {
     BinaryTreeVec<Data>::BinaryTreeVec(MappableContainer<Data> &&container) noexcept{
         Vector<Data> vector(std::move(container));
         vec.Resize(container.Size());
-        for(ulong idx = 0; idx < container.Size(); idx++){
+        for(unsigned long idx = 0; idx < container.Size(); idx++){
             vec[idx] = new NodeVec();
             vec[idx] -> element = std::move(vector[idx]);
             vec[idx] -> idxNode = idx;
@@ -141,7 +141,7 @@ namespace lasd {
     template <typename Data>
     BinaryTreeVec<Data>::BinaryTreeVec(const BinaryTreeVec<Data> &binaryTree){
         vec.Resize(binaryTree.size);
-        for(ulong i = 0; i < binaryTree.size; i++){
+        for(unsigned long i = 0; i < binaryTree.size; i++){
             vec[i] = new NodeVec();
             vec[i] -> element = binaryTree.vec[i] -> element;
             vec[i] -> idxNode = binaryTree.vec[i] -> idxNode;
@@ -157,27 +157,33 @@ namespace lasd {
     }
 
     template <typename Data>
-    BinaryTreeVec<Data>::~BinaryTreeVec(){
+    BinaryTreeVec<Data>::~BinaryTreeVec() {
         Clear();
     }
 
     template <typename Data>
-    BinaryTreeVec<Data> &BinaryTreeVec<Data>::operator=(const BinaryTreeVec<Data> &binaryTree){
-        vec.Resize(binaryTree.size);
-        for(ulong i = 0; i < binaryTree.size; i++){
-            vec[i] = new NodeVec();
-            vec[i] -> element = binaryTree.vec[i] -> element;
-            vec[i] -> idxNode = i;
-            vec[i] -> pvec = &vec;
+    BinaryTreeVec<Data> &BinaryTreeVec<Data>::operator=(const BinaryTreeVec<Data> &binaryTree) {
+        if (this != &binaryTree) {
+            Clear();
+            vec.Resize(binaryTree.size);
+            for (unsigned long i = 0; i < binaryTree.size; i++) {
+                vec[i] = new NodeVec();
+                vec[i]->element = binaryTree.vec[i]->element;
+                vec[i]->idxNode = i;
+                vec[i]->pvec = &vec;
+            }
+            size = binaryTree.size;
         }
-        size = binaryTree.size;
         return *this;
     }
 
     template <typename Data>
-    BinaryTreeVec<Data> &BinaryTreeVec<Data>::operator=(BinaryTreeVec<Data> &&binaryTree) noexcept{
-        std::swap(vec, binaryTree.vec);
-        std::swap(size, binaryTree.size);
+    BinaryTreeVec<Data> &BinaryTreeVec<Data>::operator=(BinaryTreeVec<Data> &&binaryTree) noexcept {
+        if (this != &binaryTree) {
+            Clear();
+            std::swap(vec, binaryTree.vec);
+            std::swap(size, binaryTree.size);
+        }
         return *this;
     }
 
@@ -187,7 +193,7 @@ namespace lasd {
         if(size != binaryTree.size){
             result = false;
         } else{
-            ulong i = 0;
+            unsigned long i = 0;
             while(result && i < size){
                 if(binaryTree.vec[i] -> Element() != vec[i] -> Element()){
                     result = false;
@@ -223,8 +229,8 @@ namespace lasd {
     }
 
     template <typename Data>
-    void BinaryTreeVec<Data>::Clear(){
-        for(ulong i = 0; i < size; i++){
+    void BinaryTreeVec<Data>::Clear() {
+        for (unsigned long i = 0; i < size; i++) {
             delete vec[i];
         }
         vec.Clear();
@@ -236,7 +242,7 @@ namespace lasd {
         if(size == 0){
             return false;
         } else{
-            ulong i = 0;
+            unsigned long i = 0;
             while(i < size){
                 if(vec[i] -> Element() == data){
                     return true;
@@ -250,14 +256,14 @@ namespace lasd {
 
     template <typename Data>
     void BinaryTreeVec<Data>::BreadthTraverse(TraverseFun traverseFun) const{
-        for(ulong i = 0; i < size; i++){
+        for(unsigned long i = 0; i < size; i++){
             traverseFun(vec[i] -> element);
         }
     }
 
     template <typename Data>
     void BinaryTreeVec<Data>::BreadthMap(MapFun mapFun){
-        for(ulong i = 0; i < size; i++){
+        for(unsigned long i = 0; i < size; i++){
             mapFun(vec[i] -> element);
         }
     }

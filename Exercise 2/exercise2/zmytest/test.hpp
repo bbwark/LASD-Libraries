@@ -2,6 +2,17 @@
 #ifndef MYTEST_HPP
 #define MYTEST_HPP
 
+#include <iostream>
+#include <cassert>
+#include <string.h>
+#include <string>
+#include <typeinfo>
+#include <stdlib.h>   
+#include <time.h>       
+#include <cstdlib>
+#include <ctime>
+#include <algorithm>
+
 #include "../container/container.hpp"
 #include "../container/testable.hpp"
 #include "../container/traversable.hpp"

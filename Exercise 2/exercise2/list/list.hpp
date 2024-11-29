@@ -166,8 +166,8 @@ public:
   // type operator[](argument) specifiers; // Override (NonMutable) LinearContainer member (must throw std::out_of_range when out of range)
   // type operator[](argument) specifiers; // Override (Mutable) LinearContainer member (must throw std::out_of_range when out of range)
 
-  const Data &operator[](const ulong) const override;
-  Data &operator[](const ulong) override;
+  const Data &operator[](const unsigned long) const override;
+  Data &operator[](const unsigned long) override;
 
   // type Front() specifiers; // Override (NonMutable) LinearContainer member (must throw std::length_error when empty)
   // type Front() specifiers; // Override (Mutable) LinearContainer member (must throw std::length_error when empty)

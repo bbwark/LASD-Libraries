@@ -27,7 +27,7 @@ protected:
   // using Vector<Data>::???;
   using Vector<Data>::size;
   using Vector<Data>::elements;
-  ulong index = 0;
+  unsigned long index = 0;
   // ...
 
 public:
@@ -114,7 +114,7 @@ public:
 
   // type Size() specifiers; // Override Container member
 
-  ulong Size() const noexcept override;
+  unsigned long Size() const noexcept override;
 
   /* ************************************************************************ */
 

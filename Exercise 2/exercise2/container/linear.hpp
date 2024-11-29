@@ -51,8 +51,8 @@ public:
 
   // type operator[](argument) specifiers; // (non-mutable version; concrete function must throw std::out_of_range when out of range)
   // type operator[](argument) specifiers; // (mutable version; concrete function must throw std::out_of_range when out of range)
-  virtual const Data &operator[](const ulong) const = 0;
-  virtual Data &operator[](const ulong) = 0;
+  virtual const Data &operator[](const unsigned long) const = 0;
+  virtual Data &operator[](const unsigned long) = 0;
   // type Front() specifiers; // (non-mutable version; concrete function must throw std::length_error when empty)
   // type Front() specifiers; // (mutable version; concrete function must throw std::length_error when empty)
   virtual const Data &Front() const;
@@ -151,8 +151,8 @@ public:
 protected:
   // Auxiliary member functions
   //SortMethod()
-  void QuickSort(ulong, ulong);
-  ulong Partition(ulong, ulong);
+  void QuickSort(unsigned long, unsigned long);
+  unsigned long Partition(unsigned long, unsigned long);
   // ...
 
 };

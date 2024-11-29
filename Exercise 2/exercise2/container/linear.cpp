@@ -5,7 +5,7 @@ namespace lasd {
     inline bool LinearContainer<Data>::operator==(const LinearContainer &container) const noexcept{
         if(size == container.size){
             bool isEqual = true;
-            ulong index = 0;
+            unsigned long index = 0;
             container.Traverse(
                 [this, &isEqual, &index](const Data &data){
                     isEqual = isEqual && ((*this)[index] == data);
@@ -50,14 +50,14 @@ namespace lasd {
 
     template <typename Data>
     void LinearContainer<Data>::PreOrderTraverse(TraverseFun traverseFun) const{
-        for(ulong index = 0; index < size; index++){
+        for(unsigned long index = 0; index < size; index++){
             traverseFun(operator[](index));
         }
     }
 
     template <typename Data>
     void LinearContainer<Data>::PostOrderTraverse(TraverseFun traverseFun) const{
-        ulong index = size;
+        unsigned long index = size;
         while(index > 0){
             traverseFun(operator[](--index));
         }
@@ -70,24 +70,24 @@ namespace lasd {
 
     template <typename Data>
     void LinearContainer<Data>::PreOrderMap(MapFun mapFun){
-        for(ulong index = 0; index < size; index++){
+        for(unsigned long index = 0; index < size; index++){
             mapFun(operator[](index));
         }
     }
 
     template <typename Data>
     void LinearContainer<Data>::PostOrderMap(MapFun mapFun){
-        ulong index = size;
+        unsigned long index = size;
         while(index > 0){
             mapFun(operator[](--index));
         }
     }
 
     template <typename Data>
-    ulong SortableLinearContainer<Data>::Partition(ulong start, ulong end){
+    unsigned long SortableLinearContainer<Data>::Partition(unsigned long start, unsigned long end){
         Data pivotValue = (*this)[start];
-        ulong pivotPosition = start;
-        for(ulong position = start + 1; position <= end; position++){
+        unsigned long pivotPosition = start;
+        for(unsigned long position = start + 1; position <= end; position++){
             if((*this)[position] < pivotValue){
                 pivotPosition++;
                 std::swap((*this)[pivotPosition], (*this)[position]);
@@ -98,9 +98,9 @@ namespace lasd {
     }
 
     template <typename Data>
-    void SortableLinearContainer<Data>::QuickSort(ulong start, ulong end){
+    void SortableLinearContainer<Data>::QuickSort(unsigned long start, unsigned long end){
         if(start < end){
-            ulong partition = Partition(start, end);
+            unsigned long partition = Partition(start, end);
             if(partition != 0){
                 QuickSort(start, partition - 1);
                 QuickSort(partition + 1, end);
@@ -110,8 +110,8 @@ namespace lasd {
 
     template <typename Data>
     void SortableLinearContainer<Data>::Sort(){
-        ulong start = 0;
-        ulong end = size - 1; 
+        unsigned long start = 0;
+        unsigned long end = size - 1; 
         QuickSort(start, end);
     }
 
