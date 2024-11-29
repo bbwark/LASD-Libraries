@@ -423,15 +423,17 @@ namespace lasd
     }
 
     template <typename Data>
-    BTPreOrderMutableIterator<Data>::BTPreOrderMutableIterator(const BTPreOrderMutableIterator &iterator) : BTPreOrderMutableIterator<Data>::stack(iterator.stack)
+    BTPreOrderMutableIterator<Data>::BTPreOrderMutableIterator(const BTPreOrderMutableIterator &iterator)
     {
+        stack = iterator.stack;
         root = iterator.root;
         node = iterator.node;
     }
 
     template <typename Data>
-    BTPreOrderMutableIterator<Data>::BTPreOrderMutableIterator(BTPreOrderMutableIterator &&iterator) noexcept : BTPreOrderMutableIterator<Data>::stack(std::move(iterator.stack))
+    BTPreOrderMutableIterator<Data>::BTPreOrderMutableIterator(BTPreOrderMutableIterator &&iterator) noexcept
     {
+        std::swap(stack, iterator.stack);
         std::swap(root, iterator.root);
         std::swap(node, iterator.node);
     }
@@ -637,8 +639,9 @@ namespace lasd
     }
 
     template <typename Data>
-    BTPostOrderMutableIterator<Data>::BTPostOrderMutableIterator(BTPostOrderMutableIterator &&iterator) noexcept : BTPostOrderIterator<Data>::stack(std::move(iterator.stack))
+    BTPostOrderMutableIterator<Data>::BTPostOrderMutableIterator(BTPostOrderMutableIterator &&iterator) noexcept
     {
+        stack = std::move(iterator.stack);
         root = std::move(iterator.root);
         node = std::move(iterator.node);
     }
@@ -833,8 +836,9 @@ namespace lasd
     }
 
     template <typename Data>
-    BTInOrderMutableIterator<Data>::BTInOrderMutableIterator(BTInOrderMutableIterator &&iterator) noexcept : BTInOrderIterator<Data>::stack(std::move(iterator.stack))
+    BTInOrderMutableIterator<Data>::BTInOrderMutableIterator(BTInOrderMutableIterator &&iterator) noexcept
     {
+        stack = std::move(iterator.stack);
         root = std::move(iterator.root);
         node = std::move(iterator.node);
     }
@@ -1013,8 +1017,9 @@ namespace lasd
     }
 
     template <typename Data>
-    BTBreadthMutableIterator<Data>::BTBreadthMutableIterator(BTBreadthMutableIterator &&iterator) noexcept : BTBreadthIterator<Data>::que(std::move(iterator.que))
+    BTBreadthMutableIterator<Data>::BTBreadthMutableIterator(BTBreadthMutableIterator &&iterator) noexcept
     {
+        que = std::move(iterator.que);
         root = std::move(iterator.root);
         node = std::move(iterator.node);
     }

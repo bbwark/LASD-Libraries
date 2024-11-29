@@ -245,6 +245,8 @@ namespace lasd
     const typename BinaryTree<Data>::Node *node = nullptr;
     StackVec<const typename BinaryTree<Data>::Node *> stack;
 
+    BTPreOrderIterator() = default;
+
   public:
     // Specific constructors
     BTPreOrderIterator(const BinaryTree<Data> &); // An iterator over a given binary tree
@@ -360,6 +362,8 @@ namespace lasd
     StackVec<const typename BinaryTree<Data>::Node *> stack;
 
     const typename BinaryTree<Data>::Node *bottomLLeaf(const typename BinaryTree<Data>::Node *);
+
+    BTPostOrderIterator() = default;
 
   public:
     // Specific constructors
@@ -478,6 +482,8 @@ namespace lasd
 
     const typename BinaryTree<Data>::Node *LeftLeaf(const typename BinaryTree<Data>::Node *);
 
+    BTInOrderIterator() = default;
+
   public:
     // Specific constructors
     BTInOrderIterator(const BinaryTree<Data> &); // An iterator over a given binary tree
@@ -592,6 +598,8 @@ namespace lasd
     const typename BinaryTree<Data>::Node *root = nullptr;
     const typename BinaryTree<Data>::Node *node = nullptr;
     QueueVec<const typename BinaryTree<Data>::Node *> que;
+
+    BTBreadthIterator() = default;
 
   public:
     // Specific constructors

@@ -22,8 +22,8 @@ private:
 
 protected:
 
-  ulong head = 0;
-  ulong tail = 0;
+  unsigned long head = 0;
+  unsigned long tail = 0;
 
   using Vector<Data>::size;
   using Vector<Data>::elements;
@@ -83,7 +83,7 @@ public:
 
   inline bool Empty() const noexcept override; // Override Container member
 
-  inline ulong Size() const noexcept override; // Override Container member
+  inline unsigned long Size() const noexcept override; // Override Container member
 
   /* ************************************************************************ */
 
@@ -97,7 +97,7 @@ protected:
 
   void Expand();
   void Reduce();
-  void Resize(ulong, ulong);
+  void Resize(unsigned long, unsigned long);
 
 };
 
