@@ -7,8 +7,8 @@
 #include <string.h>
 #include <string>
 #include <typeinfo>
-#include <stdlib.h>   
-#include <time.h>       
+#include <stdlib.h>
+#include <time.h>
 #include <cstdlib>
 #include <ctime>
 #include <algorithm>

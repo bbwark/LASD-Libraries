@@ -1013,158 +1013,158 @@ bool TestClseAdr()
   cout << "\n\nBegin of HTCloseAdr Test: " << endl;
 
   bool testCloseAdr = true;
-  int lines = 1;
+  int testNumber = 0;
 
   lasd::Vector<int> vec1(8);
   vec1[0] = 5;
-  vec1[1] = 1792;
-  vec1[2] = -123;
-  vec1[3] = -1;
-  vec1[4] = -2;
-  vec1[5] = -4;
-  vec1[6] = -5;
-  vec1[7] = -6;
+  vec1[1] = 184;
+  vec1[2] = -83;
+  vec1[3] = -72;
+  vec1[4] = -11;
+  vec1[5] = -44;
+  vec1[6] = -55;
+  vec1[7] = -66;
 
   lasd::HashTableClsAdr<int> htCls1(1, vec1);
   if (!htCls1.Exists(16))
   {
-    std::cout << lines++ << " 16 does NOT Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 16 does NOT Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " 16 does Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 16 does Exists: Error!" << endl;
     testCloseAdr = false;
   }
-  if (htCls1.Exists(1792))
+  if (htCls1.Exists(184))
   {
-    std::cout << lines++ << " 1792 does Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 184 does Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " 1792 does NOT Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 184 does NOT Exists: Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls1.Exists(5))
   {
-    std::cout << lines++ << " 5 does Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 5 does Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " 5 does NOT Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 5 does NOT Exists: Error!" << endl;
     testCloseAdr = false;
   }
-  if (htCls1.Exists(-123))
+  if (htCls1.Exists(-83))
   {
-    std::cout << lines++ << " -123 does Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -83 does Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " -123 does NOT Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -83 does NOT Exists: Error!" << endl;
     testCloseAdr = false;
   }
-  if (htCls1.Exists(-1))
+  if (htCls1.Exists(-72))
   {
-    std::cout << lines++ << " -1 does Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -72 does Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " -1 does NOT Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -72 does NOT Exists: Error!" << endl;
     testCloseAdr = false;
   }
   if (!htCls1.Exists(1))
   {
-    std::cout << lines++ << " 1 does NOT Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 1 does NOT Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " 1 does Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 1 does Exists: Error!" << endl;
     testCloseAdr = false;
   }
-  if (htCls1.Exists(-2))
+  if (htCls1.Exists(-11))
   {
-    std::cout << lines++ << " -2 does Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -11 does Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " -2 does NOT Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -11 does NOT Exists: Error!" << endl;
     testCloseAdr = false;
   }
-  if (htCls1.Exists(-4))
+  if (htCls1.Exists(-44))
   {
-    std::cout << lines++ << " -4 does Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -44 does Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " -4 does NOT Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -44 does NOT Exists: Error!" << endl;
     testCloseAdr = false;
   }
-  if (htCls1.Exists(-5))
+  if (htCls1.Exists(-55))
   {
-    std::cout << lines++ << " -5 does Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -55 does Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " -5 does NOT Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -55 does NOT Exists: Error!" << endl;
     testCloseAdr = false;
   }
-  if (htCls1.Exists(-6))
+  if (htCls1.Exists(-66))
   {
-    std::cout << lines++ << " -6 does Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -66 does Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " -6 does NOT Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -66 does NOT Exists: Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls1.Exists(5))
   {
-    std::cout << lines++ << " 5 does Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 5 does Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " 5 does NOT Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 5 does NOT Exists: Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls1.Remove(5))
   {
-    cout << lines++ << " 5 element has been correctly removed: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 5 element has been correctly removed: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " 5 element has not been removed: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 5 element has not been removed: Error!" << endl;
     testCloseAdr = false;
   }
   if (!htCls1.Exists(5))
   {
-    std::cout << lines++ << " 5 does NOT Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 5 does NOT Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " 5 does Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 5 does Exists: Error!" << endl;
     testCloseAdr = false;
   }
   htCls1.Clear();
   bool flagClear = true;
-  for (ulong i = 0; i < vec1.Size(); i++)
+  for (unsigned long i = 0; i < vec1.Size(); i++)
   {
     if (htCls1.Exists(vec1[i]))
     {
       flagClear &= false;
       testCloseAdr = false;
-      cout << lines++ << " " << vec1[i] << " does Exists: Error!" << endl;
+      cout << "Test: " << ++testNumber << ")" << vec1[i] << " does Exists: Error!" << endl;
     }
     else
     {
-      cout << lines++ << " " << vec1[i] << " does NOT Exists: Correct!" << endl;
+      cout << "Test: " << ++testNumber << ")" << vec1[i] << " does NOT Exists: Correct!" << endl;
     }
   }
   if (flagClear)
   {
-    cout << lines++ << " htOpn has been correctly Cleared: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn has been correctly Cleared: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " htOpn has NOT been correctly Cleared: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn has NOT been correctly Cleared: Error!" << endl;
   }
 
   lasd::List<double> lst1;
@@ -1180,49 +1180,49 @@ bool TestClseAdr()
   lasd::HashTableClsAdr<double> htCls3(std::move(lst2));
   if (htCls2 == htCls3)
   {
-    cout << lines++ << " htCls2 and htCls3 are equals: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htCls2 and htCls3 are equals: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " htCls2 and htCls3 are NOT equals: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htCls2 and htCls3 are NOT equals: Error!" << endl;
     testCloseAdr = false;
   }
   htCls2.Clear();
   if (htCls2.Empty())
   {
-    cout << lines++ << " htCls2 has been Cleared: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htCls2 has been Cleared: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " htCls2 has NOT been Cleared: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htCls2 has NOT been Cleared: Error!" << endl;
     testCloseAdr = false;
   }
   htCls2 = std::move(htCls3);
   if (htCls3.Empty())
   {
-    cout << lines++ << " htCls3 has been Swapped: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htCls3 has been Swapped: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " htCls3 has NOT been Swapped: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htCls3 has NOT been Swapped: Error!" << endl;
     testCloseAdr = false;
   }
   if (!htCls2.Empty())
   {
-    cout << lines++ << " htCls2 is NOT empty now: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htCls2 is NOT empty now: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " htCls2 is empty now: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htCls2 is empty now: Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls2.RemoveSome(vec2) && htCls2.Empty())
   {
-    cout << lines++ << " all htCls2 Elements have been removed: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " all htCls2 Elements have been removed: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " all htCls2 Elements have NOT been removed: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " all htCls2 Elements have NOT been removed: Error!" << endl;
     testCloseAdr = false;
   }
 
@@ -1230,11 +1230,11 @@ bool TestClseAdr()
   htCls4.Clear();
   if (htCls4.Empty())
   {
-    cout << lines++ << " htOpn4 is empty now: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn4 is empty now: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " htOpn4 is NOT empty now: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn4 is NOT empty now: Error!" << endl;
     testCloseAdr = false;
   }
   for (int i = 0; i < randNumb(gen) * randNumb(gen) + 1; i++)
@@ -1251,11 +1251,11 @@ bool TestClseAdr()
   }
   if (htCls4.Empty())
   {
-    cout << lines++ << " htCls4 is already empty: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htCls4 is already empty: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " htCls4 is NO more empty: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htCls4 is NO more empty: Error!" << endl;
     testCloseAdr = false;
   }
 
@@ -1273,11 +1273,11 @@ bool TestClseAdr()
   htCls5.RemoveSome(vec3);
   if (htCls5.Empty())
   {
-    cout << lines++ << " (removeSome vec3) every htCls5 element has been correctly removed: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " (removeSome vec3) every htCls5 element has been correctly removed: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " (removeSome vec3) every htCls5 element has been correctly removed: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " (removeSome vec3) every htCls5 element has been correctly removed: Error!" << endl;
     testCloseAdr = false;
   }
   htCls5.Clear();
@@ -1287,35 +1287,35 @@ bool TestClseAdr()
   lasd::Vector<int> vec4;
   if (!htCls5.RemoveSome(vec4))
   {
-    cout << lines++ << " NO elements have been removed: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NO elements have been removed: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " some elements have been removed: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " some elements have been removed: Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls4 == htCls5)
   {
-    cout << lines++ << " the two empty htCls are equal: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " the two empty htCls are equal: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " the two empty htCls are NOT equal: error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " the two empty htCls are NOT equal: error!" << endl;
     testCloseAdr = false;
   }
   if (!htCls5.Remove(5))
   {
-    cout << lines++ << " an empty htCls doesn't remove elements: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " an empty htCls doesn't remove elements: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " an empty htCls remove elements: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " an empty htCls remove elements: Error!" << endl;
     testCloseAdr = false;
   }
 
   lasd::HashTableClsAdr<int> htCls6;
-  ulong dimension = randNumb(gen) * randNumb(gen) + 1;
-  for (ulong i = 0; i < dimension; i++)
+  unsigned long dimension = randNumb(gen) * randNumb(gen) + 1;
+  for (unsigned long i = 0; i < dimension; i++)
   {
     htCls6.Insert(randNumb(gen) * randNumb(gen) * randNumb(gen));
   }
@@ -1326,11 +1326,11 @@ bool TestClseAdr()
   cout << " size after Resizing: " << sizeAfter << endl;
   if (sizeBefore == sizeAfter)
   {
-    cout << lines++ << " size before and after resizing/5 are equals: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " size before and after resizing/5 are equals: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " size before and after resizing/5 are NOT equals: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " size before and after resizing/5 are NOT equals: Error!" << endl;
     testCloseAdr = false;
   }
   lasd::List<int> lst4;
@@ -1341,58 +1341,58 @@ bool TestClseAdr()
     InsertedElement = randNumb(gen) * randNumb(gen);
     if (!lst4.Exists(InsertedElement))
     {
-      lst4.Insert(InsertedElement); // inserisco senza duplicati nella lista
+      lst4.Insert(InsertedElement);
     }
   }
   htCls6.Clear();
   if (htCls6.InsertAll(lst4))
   {
-    cout << lines++ << " every element from a List has been inserted: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " every element from a List has been inserted: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " some elements from a List have NOT been inserted: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " some elements from a List have NOT been inserted: Error!" << endl;
     testCloseAdr = false;
   }
   lasd::HashTableClsAdr<int> htCls7;
   htCls7 = htCls6;
   if (!htCls7.InsertSome(lst4))
   {
-    cout << lines++ << " NO elements have been inserted: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NO elements have been inserted: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " some elements have been inserted: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " some elements have been inserted: Error!" << endl;
     testCloseAdr = false;
   }
   htCls7 = std::move(htCls6);
   if (htCls6 == htCls7)
   {
-    cout << lines++ << " htOpn and its(equal) move assignament are equals: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn and its(equal) move assignament are equals: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " htOpn and its(equal) move assignament are different: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn and its(equal) move assignament are different: Error!" << endl;
     testCloseAdr = false;
   }
   htCls7.Clear();
   htCls7 = std::move(htCls6);
   if (htCls6 != htCls7)
   {
-    cout << lines++ << " htCls and its(equal) move assignament are different: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htCls and its(equal) move assignament are different: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " htCls and its(equal) move assignament are equals: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htCls and its(equal) move assignament are equals: Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls6.Empty())
   {
-    cout << lines++ << " moved htCls is empty: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " moved htCls is empty: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " moved htCls is not empty: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " moved htCls is not empty: Error!" << endl;
     testCloseAdr = false;
   }
 
@@ -1400,199 +1400,199 @@ bool TestClseAdr()
   cout << " Testing specific COLLISIONS on tableSize = 16 (^2 hashing): " << endl;
   if (htCls8.Insert(3))
   {
-    cout << lines++ << " Inserted '3': Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Inserted '3': Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " NOT inserted '3': Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NOT inserted '3': Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls8.Insert(5))
   {
-    cout << lines++ << " Inserted '5' collide -> '3': Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Inserted '5' collide -> '3': Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " NOT inserted '5': Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NOT inserted '5': Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls8.Insert(11))
   {
-    cout << lines++ << " Inserted '11': Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Inserted '11': Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " NOT inserted '11': Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NOT inserted '11': Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls8.Insert(13))
   {
-    cout << lines++ << " Inserted '13': Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Inserted '13': Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " NOT inserted '13': Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NOT inserted '13': Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls8.Insert(19))
   {
-    cout << lines++ << " Inserted '19': Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Inserted '19': Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " NOT inserted '19': Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NOT inserted '19': Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls8.Insert(21))
   {
-    cout << lines++ << " Inserted '21': Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Inserted '21': Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " NOT inserted '21': Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NOT inserted '21': Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls8.Insert(27))
   {
-    cout << lines++ << " Inserted '27': Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Inserted '27': Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " NOT inserted '27': Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NOT inserted '27': Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls8.Insert(29))
   {
-    cout << lines++ << " Inserted '29': Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Inserted '29': Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " NOT inserted '29': Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NOT inserted '29': Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls8.Insert(37))
   {
-    cout << lines++ << " Inserted '37': Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Inserted '37': Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " NOT inserted '37': Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NOT inserted '37': Error!" << endl;
     testCloseAdr = false;
   }
 
   if (htCls8.Exists(3))
   {
-    cout << lines++ << " Value '3' exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '3' exists: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " Value '3' doesn't exist: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '3' doesn't exist: Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls8.Exists(5))
   {
-    cout << lines++ << " Value '5' exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '5' exists: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " Value '5' doesn't exist: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '5' doesn't exist: Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls8.Exists(11))
   {
-    cout << lines++ << " Value '11' exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '11' exists: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " Value '11' doesn't exist: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '11' doesn't exist: Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls8.Exists(13))
   {
-    cout << lines++ << " Value '13' exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '13' exists: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " Value '13' doesn't exist: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '13' doesn't exist: Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls8.Exists(19))
   {
-    cout << lines++ << " Value '19' exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '19' exists: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " Value '19' doesn't exist: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '19' doesn't exist: Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls8.Exists(21))
   {
-    cout << lines++ << " Value '21' exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '21' exists: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " Value '21' doesn't exist: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '21' doesn't exist: Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls8.Exists(27))
   {
-    cout << lines++ << " Value '27' exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '27' exists: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " Value '27' doesn't exist: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '27' doesn't exist: Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls8.Exists(29))
   {
-    cout << lines++ << " Value '29' exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '29' exists: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " Value '29' doesn't exist: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '29' doesn't exist: Error!" << endl;
     testCloseAdr = false;
   }
   if (htCls8.Exists(37))
   {
-    cout << lines++ << " Value '37' exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '37' exists: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " Value '37' doesn't exist: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '37' doesn't exist: Error!" << endl;
     testCloseAdr = false;
   }
 
   cout << " Testing string: " << endl;
   lasd::HashTableClsAdr<std::string> htCls9(12);
-  std::string accStr = "a";
+  std::string accStr = "X";
   int dimensionStr = (randNumb(gen) % 4) + 1;
   for (int i = 0; i < dimensionStr; i++)
   {
     if (htCls9.Insert(accStr))
     {
-      cout << lines++ << " Value '" << accStr << "' inserted: Correct!" << endl;
+      cout << "Test: " << ++testNumber << ")" << " Value '" << accStr << "' inserted: Correct!" << endl;
     }
     else
     {
-      cout << lines++ << " Value '" << accStr << "' NOT inserted: Error!" << endl;
+      cout << "Test: " << ++testNumber << ")" << " Value '" << accStr << "' NOT inserted: Error!" << endl;
       testCloseAdr = false;
     }
-    accStr += "a";
+    accStr += "X";
   }
 
-  accStr = "a";
+  accStr = "X";
   for (int i = 0; i < dimensionStr; i++)
   {
     if (htCls9.Exists(accStr))
     {
-      cout << lines++ << " Value '" << accStr << "' exists: Correct!" << endl;
+      cout << "Test: " << ++testNumber << ")" << " Value '" << accStr << "' exists: Correct!" << endl;
     }
     else
     {
-      cout << lines++ << " Value '" << accStr << "' doesn't exist: Error!" << endl;
+      cout << "Test: " << ++testNumber << ")" << " Value '" << accStr << "' doesn't exist: Error!" << endl;
       testCloseAdr = false;
     }
-    accStr += "a";
+    accStr += "X";
   }
 
   return testCloseAdr;
@@ -1603,158 +1603,158 @@ bool TestOpnAdr()
   cout << "\n\nBegin of HTOpenAdr Test: " << endl;
 
   bool testOpenAdr = true;
-  int lines = 1;
+  int testNumber = 1;
 
   lasd::Vector<int> vec1(8);
   vec1[0] = 5;
-  vec1[1] = 1792;
-  vec1[2] = -123;
-  vec1[3] = -1;
-  vec1[4] = -2;
-  vec1[5] = -4;
-  vec1[6] = -5;
-  vec1[7] = -6;
+  vec1[1] = 184;
+  vec1[2] = -83;
+  vec1[3] = -72;
+  vec1[4] = -11;
+  vec1[5] = -44;
+  vec1[6] = -55;
+  vec1[7] = -66;
 
   lasd::HashTableOpnAdr<int> htOpn1(1, vec1);
   if (!htOpn1.Exists(16))
   {
-    std::cout << lines++ << " 16 does NOT Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 16 does NOT Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " 16 does Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 16 does Exists: Error!" << endl;
     testOpenAdr = false;
   }
-  if (htOpn1.Exists(1792))
+  if (htOpn1.Exists(184))
   {
-    std::cout << lines++ << " 1792 does Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 184 does Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " 1792 does NOT Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 184 does NOT Exists: Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn1.Exists(5))
   {
-    std::cout << lines++ << " 5 does Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 5 does Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " 5 does NOT Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 5 does NOT Exists: Error!" << endl;
     testOpenAdr = false;
   }
-  if (htOpn1.Exists(-123))
+  if (htOpn1.Exists(-83))
   {
-    std::cout << lines++ << " -123 does Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -83 does Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " -123 does NOT Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -83 does NOT Exists: Error!" << endl;
     testOpenAdr = false;
   }
-  if (htOpn1.Exists(-1))
+  if (htOpn1.Exists(-72))
   {
-    std::cout << lines++ << " -1 does Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -72 does Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " -1 does NOT Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -72 does NOT Exists: Error!" << endl;
     testOpenAdr = false;
   }
   if (!htOpn1.Exists(1))
   {
-    std::cout << lines++ << " 1 does NOT Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 1 does NOT Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " 1 does Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 1 does Exists: Error!" << endl;
     testOpenAdr = false;
   }
-  if (htOpn1.Exists(-2))
+  if (htOpn1.Exists(-11))
   {
-    std::cout << lines++ << " -2 does Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -11 does Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " -2 does NOT Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -11 does NOT Exists: Error!" << endl;
     testOpenAdr = false;
   }
-  if (htOpn1.Exists(-4))
+  if (htOpn1.Exists(-44))
   {
-    std::cout << lines++ << " -4 does Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -44 does Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " -4 does NOT Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -44 does NOT Exists: Error!" << endl;
     testOpenAdr = false;
   }
-  if (htOpn1.Exists(-5))
+  if (htOpn1.Exists(-55))
   {
-    std::cout << lines++ << " -5 does Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -55 does Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " -5 does NOT Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -55 does NOT Exists: Error!" << endl;
     testOpenAdr = false;
   }
-  if (htOpn1.Exists(-6))
+  if (htOpn1.Exists(-66))
   {
-    std::cout << lines++ << " -6 does Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -66 does Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " -6 does NOT Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " -66 does NOT Exists: Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn1.Exists(5))
   {
-    std::cout << lines++ << " 5 does Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 5 does Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " 5 does NOT Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 5 does NOT Exists: Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn1.Remove(5))
   {
-    cout << lines++ << " 5 element has been correctly removed: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 5 element has been correctly removed: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " 5 element has not been removed: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 5 element has not been removed: Error!" << endl;
     testOpenAdr = false;
   }
   if (!htOpn1.Exists(5))
   {
-    std::cout << lines++ << " 5 does NOT Exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 5 does NOT Exists: Correct!" << endl;
   }
   else
   {
-    std::cout << lines++ << " 5 does Exists: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " 5 does Exists: Error!" << endl;
     testOpenAdr = false;
   }
   htOpn1.Clear();
   bool flagClear = true;
-  for (ulong i = 0; i < vec1.Size(); i++)
+  for (unsigned long i = 0; i < vec1.Size(); i++)
   {
     if (htOpn1.Exists(vec1[i]))
     {
       flagClear &= false;
       testOpenAdr = false;
-      cout << lines++ << " " << vec1[i] << " does Exists: Error!" << endl;
+      cout << "Test: " << ++testNumber << ")" << vec1[i] << " does Exists: Error!" << endl;
     }
     else
     {
-      cout << lines++ << " " << vec1[i] << " does NOT Exists: Correct!" << endl;
+      cout << "Test: " << ++testNumber << ")" << vec1[i] << " does NOT Exists: Correct!" << endl;
     }
   }
   if (flagClear)
   {
-    cout << lines++ << " htOpn has been correctly Cleared: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn has been correctly Cleared: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " htOpn has NOT been correctly Cleared: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn has NOT been correctly Cleared: Error!" << endl;
   }
 
   lasd::List<double> lst1;
@@ -1770,49 +1770,49 @@ bool TestOpnAdr()
   lasd::HashTableOpnAdr<double> htOpn3(std::move(lst2));
   if (htOpn2 == htOpn3)
   {
-    cout << lines++ << " htOpn2 and htOpn3 are equals: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn2 and htOpn3 are equals: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " htOpn2 and htOpn3 are NOT equals: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn2 and htOpn3 are NOT equals: Error!" << endl;
     testOpenAdr = false;
   }
   htOpn2.Clear();
   if (htOpn2.Empty())
   {
-    cout << lines++ << " htOpn2 has been Cleared: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn2 has been Cleared: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " htOpn2 has NOT been Cleared: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn2 has NOT been Cleared: Error!" << endl;
     testOpenAdr = false;
   }
   htOpn2 = std::move(htOpn3);
   if (htOpn3.Empty())
   {
-    cout << lines++ << " htOpn3 has been Swapped: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn3 has been Swapped: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " htOpn3 has NOT been Swapped: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn3 has NOT been Swapped: Error!" << endl;
     testOpenAdr = false;
   }
   if (!htOpn2.Empty())
   {
-    cout << lines++ << " htOpn2 is NOT empty now: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn2 is NOT empty now: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " htOpn2 is empty now: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn2 is empty now: Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn2.RemoveSome(vec2) && htOpn2.Empty())
   {
-    cout << lines++ << " all htOpn2 Elements have been removed: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " all htOpn2 Elements have been removed: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " all htOpn2 Elements have NOT been removed: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " all htOpn2 Elements have NOT been removed: Error!" << endl;
     testOpenAdr = false;
   }
 
@@ -1820,11 +1820,11 @@ bool TestOpnAdr()
   htOpn4.Clear();
   if (htOpn4.Empty())
   {
-    cout << lines++ << " htOpn4 is empty now: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn4 is empty now: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " htOpn4 is NOT empty now: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn4 is NOT empty now: Error!" << endl;
     testOpenAdr = false;
   }
   for (int i = 0; i < randNumb(gen) * randNumb(gen) + 1; i++)
@@ -1841,11 +1841,11 @@ bool TestOpnAdr()
   }
   if (htOpn4.Empty())
   {
-    cout << lines++ << " htOpn4 is already empty: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn4 is already empty: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " htOpn4 is NO more empty: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn4 is NO more empty: Error!" << endl;
     testOpenAdr = false;
   }
 
@@ -1863,11 +1863,11 @@ bool TestOpnAdr()
   htOpn5.RemoveSome(vec3);
   if (htOpn5.Empty())
   {
-    cout << lines++ << " (removeSome vec3) every htOpn5 element has been correctly removed: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " (removeSome vec3) every htOpn5 element has been correctly removed: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " (removeSome vec3) every htOpn5 element has been correctly removed: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " (removeSome vec3) every htOpn5 element has been correctly removed: Error!" << endl;
     testOpenAdr = false;
   }
   htOpn5.Clear();
@@ -1877,35 +1877,35 @@ bool TestOpnAdr()
   lasd::Vector<int> vec4;
   if (!htOpn5.RemoveSome(vec4))
   {
-    cout << lines++ << " NO elements have been removed: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NO elements have been removed: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " some elements have been removed: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " some elements have been removed: Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn4 == htOpn5)
   {
-    cout << lines++ << " the two empty htOpn are equal: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " the two empty htOpn are equal: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " the two empty htOpn are NOT equal: error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " the two empty htOpn are NOT equal: error!" << endl;
     testOpenAdr = false;
   }
   if (!htOpn5.Remove(5))
   {
-    cout << lines++ << " an empty htOpn doesn't remove elements: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " an empty htOpn doesn't remove elements: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " an empty htOpn remove elements: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " an empty htOpn remove elements: Error!" << endl;
     testOpenAdr = false;
   }
 
   lasd::HashTableOpnAdr<int> htOpn6;
-  ulong dimension = randNumb(gen) * randNumb(gen) + 1;
-  for (ulong i = 0; i < dimension; i++)
+  unsigned long dimension = randNumb(gen) * randNumb(gen) + 1;
+  for (unsigned long i = 0; i < dimension; i++)
   {
     htOpn6.Insert(randNumb(gen) * randNumb(gen) * randNumb(gen));
   }
@@ -1916,11 +1916,11 @@ bool TestOpnAdr()
   cout << " size after Resizing: " << sizeAfter << endl;
   if (sizeBefore == sizeAfter)
   {
-    cout << lines++ << " size before and after resizing/5 are equals: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " size before and after resizing/5 are equals: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " size before and after resizing/5 are NOT equals: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " size before and after resizing/5 are NOT equals: Error!" << endl;
     testOpenAdr = false;
   }
   lasd::List<int> lst4;
@@ -1931,58 +1931,58 @@ bool TestOpnAdr()
     InsertedElement = randNumb(gen) * randNumb(gen);
     if (!lst4.Exists(InsertedElement))
     {
-      lst4.Insert(InsertedElement); // inserisco senza duplicati nella lista
+      lst4.Insert(InsertedElement);
     }
   }
   htOpn6.Clear();
   if (htOpn6.InsertAll(lst4))
   {
-    cout << lines++ << " every element from a List has been inserted: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " every element from a List has been inserted: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " some elements from a List have NOT been inserted: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " some elements from a List have NOT been inserted: Error!" << endl;
     testOpenAdr = false;
   }
   lasd::HashTableOpnAdr<int> htOpn7;
   htOpn7 = htOpn6;
   if (!htOpn7.InsertSome(lst4))
   {
-    cout << lines++ << " NO elements have been inserted: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NO elements have been inserted: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " some elements have been inserted: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " some elements have been inserted: Error!" << endl;
     testOpenAdr = false;
   }
   htOpn7 = std::move(htOpn6);
   if (htOpn6 == htOpn7)
   {
-    cout << lines++ << " htOpn and its(equal) move assignament are equals: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn and its(equal) move assignament are equals: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " htOpn and its(equal) move assignament are different: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn and its(equal) move assignament are different: Error!" << endl;
     testOpenAdr = false;
   }
   htOpn7.Clear();
   htOpn7 = std::move(htOpn6);
   if (htOpn6 != htOpn7)
   {
-    cout << lines++ << " htOpn and its(equal) move assignament are different: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn and its(equal) move assignament are different: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " htOpn and its(equal) move assignament are equals: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " htOpn and its(equal) move assignament are equals: Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn6.Empty())
   {
-    cout << lines++ << " moved htOpn is empty: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " moved htOpn is empty: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " moved htOpn is not empty: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " moved htOpn is not empty: Error!" << endl;
     testOpenAdr = false;
   }
 
@@ -1990,205 +1990,206 @@ bool TestOpnAdr()
   cout << " Testing specific COLLISIONS on tableSize = 16 (^2 hashing): " << endl;
   if (htOpn8.Insert(3))
   {
-    cout << lines++ << " Inserted '3': Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Inserted '3': Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " NOT inserted '3': Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NOT inserted '3': Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn8.Insert(5))
   {
-    cout << lines++ << " Inserted '5' collide -> '3': Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Inserted '5' collide -> '3': Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " NOT inserted '5': Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NOT inserted '5': Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn8.Insert(11))
   {
-    cout << lines++ << " Inserted '11': Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Inserted '11': Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " NOT inserted '11': Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NOT inserted '11': Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn8.Insert(13))
   {
-    cout << lines++ << " Inserted '13': Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Inserted '13': Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " NOT inserted '13': Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NOT inserted '13': Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn8.Insert(19))
   {
-    cout << lines++ << " Inserted '19': Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Inserted '19': Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " NOT inserted '19': Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NOT inserted '19': Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn8.Insert(21))
   {
-    cout << lines++ << " Inserted '21': Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Inserted '21': Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " NOT inserted '21': Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NOT inserted '21': Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn8.Insert(27))
   {
-    cout << lines++ << " Inserted '27': Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Inserted '27': Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " NOT inserted '27': Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NOT inserted '27': Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn8.Insert(29))
   {
-    cout << lines++ << " Inserted '29': Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Inserted '29': Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " NOT inserted '29': Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NOT inserted '29': Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn8.Insert(37))
   {
-    cout << lines++ << " Inserted '37': Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Inserted '37': Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " NOT inserted '37': Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " NOT inserted '37': Error!" << endl;
     testOpenAdr = false;
   }
 
   if (htOpn8.Exists(3))
   {
-    cout << lines++ << " Value '3' exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '3' exists: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " Value '3' doesn't exist: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '3' doesn't exist: Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn8.Exists(5))
   {
-    cout << lines++ << " Value '5' exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '5' exists: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " Value '5' doesn't exist: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '5' doesn't exist: Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn8.Exists(11))
   {
-    cout << lines++ << " Value '11' exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '11' exists: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " Value '11' doesn't exist: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '11' doesn't exist: Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn8.Exists(13))
   {
-    cout << lines++ << " Value '13' exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '13' exists: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " Value '13' doesn't exist: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '13' doesn't exist: Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn8.Exists(19))
   {
-    cout << lines++ << " Value '19' exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '19' exists: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " Value '19' doesn't exist: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '19' doesn't exist: Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn8.Exists(21))
   {
-    cout << lines++ << " Value '21' exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '21' exists: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " Value '21' doesn't exist: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '21' doesn't exist: Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn8.Exists(27))
   {
-    cout << lines++ << " Value '27' exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '27' exists: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " Value '27' doesn't exist: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '27' doesn't exist: Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn8.Exists(29))
   {
-    cout << lines++ << " Value '29' exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '29' exists: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " Value '29' doesn't exist: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '29' doesn't exist: Error!" << endl;
     testOpenAdr = false;
   }
   if (htOpn8.Exists(37))
   {
-    cout << lines++ << " Value '37' exists: Correct!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '37' exists: Correct!" << endl;
   }
   else
   {
-    cout << lines++ << " Value '37' doesn't exist: Error!" << endl;
+    cout << "Test: " << ++testNumber << ")" << " Value '37' doesn't exist: Error!" << endl;
     testOpenAdr = false;
   }
 
   cout << " Testing string: " << endl;
   lasd::HashTableOpnAdr<std::string> htOpn9(15);
-  std::string accStr = "a";
+  std::string accStr = "X";
   int dimensionStr = randNumb(gen) + 1;
   for (int i = 0; i < dimensionStr; i++)
   {
     if (htOpn9.Insert(accStr))
     {
-      cout << lines++ << " Value '" << accStr << "' inserted: Correct!" << endl;
+      cout << "Test: " << ++testNumber << ")" << " Value '" << accStr << "' inserted: Correct!" << endl;
     }
     else
     {
-      cout << lines++ << " Value '" << accStr << "' NOT inserted: Error!" << endl;
+      cout << "Test: " << ++testNumber << ")" << " Value '" << accStr << "' NOT inserted: Error!" << endl;
       testOpenAdr = false;
     }
-    accStr += "a";
+    accStr += "X";
   }
 
-  accStr = "a";
+  accStr = "X";
   for (int i = 0; i < dimensionStr; i++)
   {
     if (htOpn9.Exists(accStr))
     {
-      cout << lines++ << " Value '" << accStr << "' exists: Correct!" << endl;
+      cout << "Test: " << ++testNumber << ")" << " Value '" << accStr << "' exists: Correct!" << endl;
     }
     else
     {
-      cout << lines++ << " Value '" << accStr << "' doesn't exist: Error!" << endl;
+      cout << "Test: " << ++testNumber << ")" << " Value '" << accStr << "' doesn't exist: Error!" << endl;
       testOpenAdr = false;
     }
-    accStr += "a";
+    accStr += "X";
   }
 
   return testOpenAdr;
 }
 
-void TestEsercizio3(){
+void TestEsercizio3()
+{
   bool testCloseAdr = TestClseAdr();
   cout << "HTCloseAdr Test: ", testCloseAdr ? cout << "Passed!\n" : cout << "NOT passed!\n";
   bool testOpenAdr = TestOpnAdr();

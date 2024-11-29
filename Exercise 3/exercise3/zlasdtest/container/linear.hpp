@@ -37,7 +37,7 @@ void NonEqualLinear(uint & testnum, uint & testerr, const lasd::LinearContainer<
 }
 
 template <typename Data>
-void GetAt(uint & testnum, uint & testerr, const lasd::LinearContainer<Data> & con, bool chk, const ulong & ind, const Data & val) {
+void GetAt(uint & testnum, uint & testerr, const lasd::LinearContainer<Data> & con, bool chk, const unsigned long & ind, const Data & val) {
   bool tst;
   testnum++;
   try {
@@ -55,7 +55,7 @@ void GetAt(uint & testnum, uint & testerr, const lasd::LinearContainer<Data> & c
 }
 
 template <typename Data>
-void SetAt(uint & testnum, uint & testerr, lasd::LinearContainer<Data> & con, bool chk, const ulong & ind, const Data & val) {
+void SetAt(uint & testnum, uint & testerr, lasd::LinearContainer<Data> & con, bool chk, const unsigned long & ind, const Data & val) {
   bool tst;
   testnum++;
   try {

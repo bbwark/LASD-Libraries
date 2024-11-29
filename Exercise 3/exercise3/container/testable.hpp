@@ -8,53 +8,51 @@
 
 /* ************************************************************************** */
 
-namespace lasd {
+namespace lasd
+{
 
-/* ************************************************************************** */
+  /* ************************************************************************** */
 
-template <typename Data>
-class TestableContainer : virtual public Container{
-  // Must extend Container
+  template <typename Data>
+  class TestableContainer : virtual public Container
+  {
+    // Must extend Container
 
-private:
+  private:
+    // ...
 
-  // ...
+  protected:
+    // ...
 
-protected:
+  public:
+    // Destructor
+    // ~TestableContainer() specifiers
+    virtual ~TestableContainer() = default;
 
-  // ...
+    /* ************************************************************************ */
 
-public:
+    // Copy assignment
+    // type operator=(argument); // Copy assignment of abstract types is not possible.
+    TestableContainer &operator=(const TestableContainer &) = delete;
+    // Move assignment
+    // type operator=(argument); // Move assignment of abstract types is not possible.
+    TestableContainer &operator=(TestableContainer &&) noexcept = delete;
+    /* ************************************************************************ */
 
-  // Destructor
-  // ~TestableContainer() specifiers
-  virtual ~TestableContainer() = default;
+    // Comparison operators
+    // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
+    // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
+    bool operator==(const TestableContainer &) noexcept = delete;
+    bool operator!=(const TestableContainer &) noexcept = delete;
+    /* ************************************************************************ */
 
-  /* ************************************************************************ */
+    // Specific member function
 
-  // Copy assignment
-  // type operator=(argument); // Copy assignment of abstract types is not possible.
-  TestableContainer &operator=(const TestableContainer &) = delete;
-  // Move assignment
-  // type operator=(argument); // Move assignment of abstract types is not possible.
-  TestableContainer &operator=(TestableContainer &&) noexcept = delete;
-  /* ************************************************************************ */
+    // type Exists(argument) specifiers; // (concrete function should not throw exceptions)
+    virtual bool Exists(const Data &) const noexcept = 0;
+  };
 
-  // Comparison operators
-  // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
-  // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
-  bool operator==(const TestableContainer &) noexcept = delete;
-  bool operator!=(const TestableContainer &) noexcept = delete;
-  /* ************************************************************************ */
-
-  // Specific member function
-
-  // type Exists(argument) specifiers; // (concrete function should not throw exceptions)
-  virtual bool Exists(const Data &) const noexcept = 0;
-
-};
-
-/* ************************************************************************** */
+  /* ************************************************************************** */
 
 }
 
