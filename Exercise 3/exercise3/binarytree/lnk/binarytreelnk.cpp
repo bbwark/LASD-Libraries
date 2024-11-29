@@ -1,33 +1,39 @@
 #include "binarytreelnk.hpp"
 
-namespace lasd {
+namespace lasd
+{
 
     template <typename Data>
-    BinaryTreeLnk<Data>::NodeLnk::NodeLnk(const Data &data){
+    BinaryTreeLnk<Data>::NodeLnk::NodeLnk(const Data &data)
+    {
         element = data;
     }
 
     template <typename Data>
-    BinaryTreeLnk<Data>::NodeLnk::NodeLnk(Data &&data) noexcept{
+    BinaryTreeLnk<Data>::NodeLnk::NodeLnk(Data &&data) noexcept
+    {
         element = std::move(data);
     }
 
     template <typename Data>
-    BinaryTreeLnk<Data>::NodeLnk::NodeLnk(const NodeLnk &node){
+    BinaryTreeLnk<Data>::NodeLnk::NodeLnk(const NodeLnk &node)
+    {
         left = node.left;
         right = node.right;
         element = node.element;
     }
 
     template <typename Data>
-    BinaryTreeLnk<Data>::NodeLnk::NodeLnk(NodeLnk &&node) noexcept{
+    BinaryTreeLnk<Data>::NodeLnk::NodeLnk(NodeLnk &&node) noexcept
+    {
         std::swap(left, node.left);
         std::swap(right, node.right);
         std::swap(element, node.element);
     }
 
     template <typename Data>
-    BinaryTreeLnk<Data>::NodeLnk &BinaryTreeLnk<Data>::NodeLnk::operator=(const NodeLnk &node){
+    BinaryTreeLnk<Data>::NodeLnk &BinaryTreeLnk<Data>::NodeLnk::operator=(const NodeLnk &node)
+    {
         left = node.left;
         right = node.right;
         element = node.element;
@@ -35,7 +41,8 @@ namespace lasd {
     }
 
     template <typename Data>
-    BinaryTreeLnk<Data>::NodeLnk &BinaryTreeLnk<Data>::NodeLnk::operator=(NodeLnk &&node) noexcept{
+    BinaryTreeLnk<Data>::NodeLnk &BinaryTreeLnk<Data>::NodeLnk::operator=(NodeLnk &&node) noexcept
+    {
         std::swap(left, node.left);
         std::swap(right, node.right);
         std::swap(element, node.element);
@@ -43,128 +50,158 @@ namespace lasd {
     }
 
     template <typename Data>
-    BinaryTreeLnk<Data>::NodeLnk::~NodeLnk(){
-        if(left != nullptr){
+    BinaryTreeLnk<Data>::NodeLnk::~NodeLnk()
+    {
+        if (left != nullptr)
+        {
             delete left;
         }
-        if(right != nullptr){
+        if (right != nullptr)
+        {
             delete right;
         }
     }
 
     template <typename Data>
-    inline Data &BinaryTreeLnk<Data>::NodeLnk::Element() noexcept{
+    inline Data &BinaryTreeLnk<Data>::NodeLnk::Element() noexcept
+    {
         return element;
     }
 
     template <typename Data>
-    inline const Data &BinaryTreeLnk<Data>::NodeLnk::Element() const noexcept{
+    inline const Data &BinaryTreeLnk<Data>::NodeLnk::Element() const noexcept
+    {
         return element;
     }
 
     template <typename Data>
-    bool BinaryTreeLnk<Data>::NodeLnk::IsLeaf() const noexcept{
+    bool BinaryTreeLnk<Data>::NodeLnk::IsLeaf() const noexcept
+    {
         return (!HasLeftChild() && !HasRightChild());
     }
 
     template <typename Data>
-    bool BinaryTreeLnk<Data>::NodeLnk::HasLeftChild() const noexcept{
+    bool BinaryTreeLnk<Data>::NodeLnk::HasLeftChild() const noexcept
+    {
         return (left != nullptr);
     }
 
     template <typename Data>
-    bool BinaryTreeLnk<Data>::NodeLnk::HasRightChild() const noexcept{
+    bool BinaryTreeLnk<Data>::NodeLnk::HasRightChild() const noexcept
+    {
         return (right != nullptr);
     }
-    
 
     template <typename Data>
-    BinaryTreeLnk<Data>::MutableNode &BinaryTreeLnk<Data>::NodeLnk::LeftChild(){
-        if(HasLeftChild()){
+    BinaryTreeLnk<Data>::MutableNode &BinaryTreeLnk<Data>::NodeLnk::LeftChild()
+    {
+        if (HasLeftChild())
+        {
             return *left;
-        } else{
+        }
+        else
+        {
             throw std::out_of_range("Node does NOT have LeftChild");
         }
     }
 
     template <typename Data>
-    BinaryTreeLnk<Data>::MutableNode &BinaryTreeLnk<Data>::NodeLnk::RightChild(){
-        if(HasRightChild()){
+    BinaryTreeLnk<Data>::MutableNode &BinaryTreeLnk<Data>::NodeLnk::RightChild()
+    {
+        if (HasRightChild())
+        {
             return *right;
-        } else{
+        }
+        else
+        {
             throw std::out_of_range("Node does NOT have RightChild");
         }
     }
 
     template <typename Data>
-    const BinaryTreeLnk<Data>::Node &BinaryTreeLnk<Data>::NodeLnk::LeftChild() const{
-        if(HasLeftChild()){
+    const BinaryTreeLnk<Data>::Node &BinaryTreeLnk<Data>::NodeLnk::LeftChild() const
+    {
+        if (HasLeftChild())
+        {
             return *left;
-        } else{
+        }
+        else
+        {
             throw std::out_of_range("Node does NOT have LeftChild");
         }
     }
 
     template <typename Data>
-    const BinaryTreeLnk<Data>::Node &BinaryTreeLnk<Data>::NodeLnk::RightChild() const{
-        if(HasRightChild()){
+    const BinaryTreeLnk<Data>::Node &BinaryTreeLnk<Data>::NodeLnk::RightChild() const
+    {
+        if (HasRightChild())
+        {
             return *right;
-        } else{
+        }
+        else
+        {
             throw std::out_of_range("Node does NOT have RightChild");
         }
     }
 
     template <typename Data>
-    BinaryTreeLnk<Data>::BinaryTreeLnk(const TraversableContainer<Data> &container){
+    BinaryTreeLnk<Data>::BinaryTreeLnk(const TraversableContainer<Data> &container)
+    {
         size = container.Size();
-        QueueLst<NodeLnk**> que;
+        QueueLst<NodeLnk **> que;
         que.Enqueue(&root);
         container.Traverse(
-            [&que](const Data &data){
+            [&que](const Data &data)
+            {
                 NodeLnk *&curr = *que.HeadNDequeue();
                 curr = new NodeLnk(data);
-                que.Enqueue(&curr -> left);
-                que.Enqueue(&curr -> right);
-            }
-        );
+                que.Enqueue(&curr->left);
+                que.Enqueue(&curr->right);
+            });
     }
 
     template <typename Data>
-    BinaryTreeLnk<Data>::BinaryTreeLnk(MappableContainer<Data> &&container){
+    BinaryTreeLnk<Data>::BinaryTreeLnk(MappableContainer<Data> &&container)
+    {
         size = container.Size();
-        QueueLst<NodeLnk**> que;
+        QueueLst<NodeLnk **> que;
         que.Enqueue(&root);
         container.Map(
-            [&que](const Data &data){
+            [&que](const Data &data)
+            {
                 NodeLnk *&curr = *que.HeadNDequeue();
                 curr = new NodeLnk(std::move(data));
-                que.Enqueue(&curr -> left);
-                que.Enqueue(&curr -> right);
-            }
-        );
+                que.Enqueue(&curr->left);
+                que.Enqueue(&curr->right);
+            });
     }
 
     template <typename Data>
-    BinaryTreeLnk<Data>::BinaryTreeLnk(const BinaryTreeLnk<Data> &binaryTree){
+    BinaryTreeLnk<Data>::BinaryTreeLnk(const BinaryTreeLnk<Data> &binaryTree)
+    {
         size = binaryTree.size;
         root = CreateTree(binaryTree.root);
     }
 
     template <typename Data>
-    BinaryTreeLnk<Data>::BinaryTreeLnk(BinaryTreeLnk<Data> &&binaryTree) noexcept{
+    BinaryTreeLnk<Data>::BinaryTreeLnk(BinaryTreeLnk<Data> &&binaryTree) noexcept
+    {
         std::swap(root, binaryTree.root);
         std::swap(size, binaryTree.size);
     }
 
     template <typename Data>
-    BinaryTreeLnk<Data>::~BinaryTreeLnk(){
+    BinaryTreeLnk<Data>::~BinaryTreeLnk()
+    {
         Clear();
     }
 
     template <typename Data>
-    BinaryTreeLnk<Data> &BinaryTreeLnk<Data>::operator=(const BinaryTreeLnk<Data> &binaryTree){
+    BinaryTreeLnk<Data> &BinaryTreeLnk<Data>::operator=(const BinaryTreeLnk<Data> &binaryTree)
+    {
         Clear();
-        if(!binaryTree.Empty()){
+        if (!binaryTree.Empty())
+        {
             size = binaryTree.size;
             root = CreateTree(binaryTree.root);
         }
@@ -172,43 +209,56 @@ namespace lasd {
     }
 
     template <typename Data>
-    BinaryTreeLnk<Data> &BinaryTreeLnk<Data>::operator=(BinaryTreeLnk<Data> &&binaryTree) noexcept{
+    BinaryTreeLnk<Data> &BinaryTreeLnk<Data>::operator=(BinaryTreeLnk<Data> &&binaryTree) noexcept
+    {
         std::swap(root, binaryTree.root);
         std::swap(size, binaryTree.size);
         return *this;
     }
 
     template <typename Data>
-    bool BinaryTreeLnk<Data>::operator==(const BinaryTreeLnk<Data> &binaryTree) const noexcept{
+    bool BinaryTreeLnk<Data>::operator==(const BinaryTreeLnk<Data> &binaryTree) const noexcept
+    {
         return BinaryTree<Data>::operator==(binaryTree);
     }
 
     template <typename Data>
-    bool BinaryTreeLnk<Data>::operator!=(const BinaryTreeLnk<Data> &binaryTree) const noexcept{
+    bool BinaryTreeLnk<Data>::operator!=(const BinaryTreeLnk<Data> &binaryTree) const noexcept
+    {
         return BinaryTree<Data>::operator!=(binaryTree);
     }
 
     template <typename Data>
-    const BinaryTreeLnk<Data>::Node &BinaryTreeLnk<Data>::Root() const{
-        if(root != nullptr){
+    const BinaryTreeLnk<Data>::Node &BinaryTreeLnk<Data>::Root() const
+    {
+        if (root != nullptr)
+        {
             return *root;
-        } else{
+        }
+        else
+        {
             throw std::length_error("Binary Tree is Empty");
         }
     }
 
     template <typename Data>
-    BinaryTreeLnk<Data>::MutableNode &BinaryTreeLnk<Data>::Root(){
-        if(root != nullptr){
+    BinaryTreeLnk<Data>::MutableNode &BinaryTreeLnk<Data>::Root()
+    {
+        if (root != nullptr)
+        {
             return *root;
-        } else{
+        }
+        else
+        {
             throw std::length_error("Binary Tree is Empty");
         }
     }
 
     template <typename Data>
-    void BinaryTreeLnk<Data>::Clear(){
-        if(root != nullptr){
+    void BinaryTreeLnk<Data>::Clear()
+    {
+        if (root != nullptr)
+        {
             delete root;
             root = nullptr;
             size = 0;
@@ -216,13 +266,19 @@ namespace lasd {
     }
 
     template <typename Data>
-    bool BinaryTreeLnk<Data>::Exists(const Data &data) const noexcept{
-        if(size == 0){
+    bool BinaryTreeLnk<Data>::Exists(const Data &data) const noexcept
+    {
+        if (size == 0)
+        {
             return false;
-        }else{
+        }
+        else
+        {
             BTInOrderIterator<Data> itr1(*this);
-            while(!itr1.Terminated()){
-                if(*itr1 == data){
+            while (!itr1.Terminated())
+            {
+                if (*itr1 == data)
+                {
                     return true;
                 }
                 ++itr1;
@@ -231,14 +287,15 @@ namespace lasd {
         }
     }
 
-    template<typename Data>
-    typename BinaryTreeLnk<Data>::NodeLnk* BinaryTreeLnk<Data>::CreateTree(NodeLnk *root){
-        NodeLnk* tempNode = new NodeLnk();
-        tempNode -> element = root -> Element();
-        if(root -> HasLeftChild())
-        tempNode -> left = CreateTree(root -> left);
-        if(root -> HasRightChild())
-        tempNode -> right = CreateTree(root -> right);
+    template <typename Data>
+    typename BinaryTreeLnk<Data>::NodeLnk *BinaryTreeLnk<Data>::CreateTree(NodeLnk *root)
+    {
+        NodeLnk *tempNode = new NodeLnk();
+        tempNode->element = root->Element();
+        if (root->HasLeftChild())
+            tempNode->left = CreateTree(root->left);
+        if (root->HasRightChild())
+            tempNode->right = CreateTree(root->right);
         return tempNode;
     }
 

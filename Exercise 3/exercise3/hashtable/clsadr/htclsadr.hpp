@@ -10,139 +10,136 @@
 
 /* ************************************************************************** */
 
-namespace lasd {
+namespace lasd
+{
 
-/* ************************************************************************** */
+  /* ************************************************************************** */
 
-template <typename Data>
-class HashTableClsAdr : virtual public HashTable<Data>{
-  // Must extend HashTable<Data>
+  template <typename Data>
+  class HashTableClsAdr : virtual public HashTable<Data>
+  {
+    // Must extend HashTable<Data>
 
-private:
+  private:
+    // ...
 
-  // ...
+  protected:
+    static const ulong TABLESIZEMIN = 128;
+    static const ulong TABLESIZEMAX = 65536;
 
-protected:
+    // using HashTable<Data>::???;
+    using HashTable<Data>::HashKey;
+    using HashTable<Data>::hash;
+    using HashTable<Data>::tableSize;
+    using HashTable<Data>::size;
+    using HashTable<Data>::a;
+    using HashTable<Data>::b;
 
-  static const ulong TABLESIZEMIN = 128;
-  static const ulong TABLESIZEMAX = 65536;
+    BST<Data> *table = nullptr;
 
-  // using HashTable<Data>::???;
-  using HashTable<Data>::HashKey;
-  using HashTable<Data>::hash;
-  using HashTable<Data>::tableSize;
-  using HashTable<Data>::size;
-  using HashTable<Data>::a;
-  using HashTable<Data>::b;
+  public:
+    using DictionaryContainer<Data>::InsertAll;
 
-  BST<Data> *table = nullptr;
+    // Default constructor
+    // HashTableClsAdr() specifiers;
+    HashTableClsAdr();
 
-public:
+    /* ************************************************************************ */
 
-  using DictionaryContainer<Data>::InsertAll;
+    // Specific constructors
+    // HashTableClsAdr(argument) specifiers; // A hash table of a given size
+    // HashTableClsAdr(argument) specifiers; // A hash table obtained from a TraversableContainer
+    // HashTableClsAdr(argument) specifiers; // A hash table of a given size obtained from a TraversableContainer
+    // HashTableClsAdr(argument) specifiers; // A hash table obtained from a MappableContainer
+    // HashTableClsAdr(argument) specifiers; // A hash table of a given size obtained from a MappableContainer
 
-  // Default constructor
-  // HashTableClsAdr() specifiers;
-  HashTableClsAdr();
+    HashTableClsAdr(const ulong);
+    HashTableClsAdr(const TraversableContainer<Data> &);
+    HashTableClsAdr(const ulong, const TraversableContainer<Data> &);
+    HashTableClsAdr(MappableContainer<Data> &&);
+    HashTableClsAdr(const ulong, MappableContainer<Data> &&);
 
-  /* ************************************************************************ */
+    /* ************************************************************************ */
 
-  // Specific constructors
-  // HashTableClsAdr(argument) specifiers; // A hash table of a given size
-  // HashTableClsAdr(argument) specifiers; // A hash table obtained from a TraversableContainer
-  // HashTableClsAdr(argument) specifiers; // A hash table of a given size obtained from a TraversableContainer
-  // HashTableClsAdr(argument) specifiers; // A hash table obtained from a MappableContainer
-  // HashTableClsAdr(argument) specifiers; // A hash table of a given size obtained from a MappableContainer
+    // Copy constructor
+    // HashTableClsAdr(argument) specifiers;
 
-  HashTableClsAdr(const ulong);
-  HashTableClsAdr(const TraversableContainer<Data> &);
-  HashTableClsAdr(const ulong, const TraversableContainer<Data> &);
-  HashTableClsAdr(MappableContainer<Data> &&);
-  HashTableClsAdr(const ulong, MappableContainer<Data> &&);
+    HashTableClsAdr(const HashTableClsAdr<Data> &);
 
-  /* ************************************************************************ */
+    // Move constructor
+    // HashTableClsAdr(argument) specifiers;
 
-  // Copy constructor
-  // HashTableClsAdr(argument) specifiers;
+    HashTableClsAdr(HashTableClsAdr<Data> &&) noexcept;
 
-  HashTableClsAdr(const HashTableClsAdr<Data> &);
+    /* ************************************************************************ */
 
-  // Move constructor
-  // HashTableClsAdr(argument) specifiers;
+    // Destructor
+    // ~HashTableClsAdr() specifiers;
 
-  HashTableClsAdr(HashTableClsAdr<Data> &&) noexcept;
+    ~HashTableClsAdr();
 
-  /* ************************************************************************ */
+    /* ************************************************************************ */
 
-  // Destructor
-  // ~HashTableClsAdr() specifiers;
+    // Copy assignment
+    // type operator=(argument) specifiers;
 
-  ~HashTableClsAdr();
+    HashTableClsAdr &operator=(const HashTableClsAdr<Data> &);
 
-  /* ************************************************************************ */
+    // Move assignment
+    // type operator=(argument) specifiers;
 
-  // Copy assignment
-  // type operator=(argument) specifiers;
+    HashTableClsAdr &operator=(HashTableClsAdr<Data> &&) noexcept;
 
-  HashTableClsAdr &operator=(const HashTableClsAdr<Data> &);
+    /* ************************************************************************ */
 
-  // Move assignment
-  // type operator=(argument) specifiers;
+    // Comparison operators
+    // type operator==(argument) specifiers;
+    // type operator!=(argument) specifiers;
 
-  HashTableClsAdr &operator=(HashTableClsAdr<Data> &&) noexcept;
+    bool operator==(const HashTableClsAdr<Data> &) const noexcept;
+    bool operator!=(const HashTableClsAdr<Data> &) const noexcept;
 
-  /* ************************************************************************ */
+    /* ************************************************************************ */
 
-  // Comparison operators
-  // type operator==(argument) specifiers;
-  // type operator!=(argument) specifiers;
+    // Specific member functions (inherited from DictionaryContainer)
 
-  bool operator==(const HashTableClsAdr<Data> &) const noexcept;
-  bool operator!=(const HashTableClsAdr<Data> &) const noexcept;
+    // type Insert(argument) specifiers; // Override DictionaryContainer member (Copy of the value)
+    // type Insert(argument) specifiers; // Override DictionaryContainer member (Move of the value)
+    // type Remove(argument) specifiers; // Override DictionaryContainer member
 
-  /* ************************************************************************ */
+    bool Insert(const Data &) override;
+    bool Insert(Data &&) noexcept override;
+    bool Remove(const Data &) override;
 
-  // Specific member functions (inherited from DictionaryContainer)
+    /* ************************************************************************ */
 
-  // type Insert(argument) specifiers; // Override DictionaryContainer member (Copy of the value)
-  // type Insert(argument) specifiers; // Override DictionaryContainer member (Move of the value)
-  // type Remove(argument) specifiers; // Override DictionaryContainer member
+    // Specific member functions (inherited from TestableContainer)
 
-  bool Insert(const Data &) override;
-  bool Insert(Data &&) noexcept override;
-  bool Remove(const Data &) override;
+    // type Exists(argument) specifiers; // Override TestableContainer member
 
-  /* ************************************************************************ */
+    bool Exists(const Data &) const noexcept override;
 
-  // Specific member functions (inherited from TestableContainer)
+    /* ************************************************************************ */
 
-  // type Exists(argument) specifiers; // Override TestableContainer member
+    // Specific member functions (inherited from ResizableContainer)
 
-  bool Exists(const Data &) const noexcept override;
+    // type Resize(argument) specifiers; // Resize the hashtable to a given size
 
-  /* ************************************************************************ */
+    void Resize(ulong) override;
 
-  // Specific member functions (inherited from ResizableContainer)
+    /* ************************************************************************ */
 
-  // type Resize(argument) specifiers; // Resize the hashtable to a given size
+    // Specific member functions (inherited from ClearableContainer)
 
-  void Resize(ulong) override;
+    // type Clear() specifiers; // Override Container member
 
-  /* ************************************************************************ */
+    void Clear() override;
 
-  // Specific member functions (inherited from ClearableContainer)
+  protected:
+    ulong Pow2Next(const ulong) const noexcept;
+  };
 
-  // type Clear() specifiers; // Override Container member
-
-  void Clear() override;
-
-protected:
-
-  ulong Pow2Next(const ulong) const noexcept;
-
-};
-
-/* ************************************************************************** */
+  /* ************************************************************************** */
 
 }
 
