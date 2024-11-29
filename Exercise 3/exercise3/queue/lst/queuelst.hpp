@@ -9,113 +9,116 @@
 
 /* ************************************************************************** */
 
-namespace lasd
-{
+namespace lasd {
 
-  /* ************************************************************************** */
+/* ************************************************************************** */
 
-  template <typename Data>
-  class QueueLst : virtual public Queue<Data>, virtual protected List<Data>
-  {
-    // Must extend Queue<Data>,
-    //             List<Data>
+template <typename Data>
+class QueueLst : virtual public Queue<Data>, virtual protected List<Data>{
+  // Must extend Queue<Data>,
+  //             List<Data>
 
-  private:
-    // ...
+private:
 
-  protected:
-    // using List<Data>::???;
-    using List<Data>::size;
-    using List<Data>::tail;
-    using List<Data>::head;
-    // ...
+  // ...
 
-  public:
-    // Default constructor
-    // QueueLst() specifier;
+protected:
 
-    QueueLst() = default;
+  // using List<Data>::???;
+  using List<Data>::size;
+  using List<Data>::tail;
+  using List<Data>::head;
+  // ...
 
-    /* ************************************************************************ */
+public:
 
-    // Specific constructor
-    // QueueLst(argument) specifiers; // A stack obtained from a TraversableContainer
-    // QueueLst(argument) specifiers; // A stack obtained from a MappableContainer
+  // Default constructor
+  // QueueLst() specifier;
 
-    QueueLst(const TraversableContainer<Data> &container) : List<Data>(container) {};
-    QueueLst(MappableContainer<Data> &&container) : List<Data>(std::move(container)) {};
+  QueueLst() = default;
 
-    /* ************************************************************************ */
+  /* ************************************************************************ */
 
-    // Copy constructor
-    // QueueLst(argument);
+  // Specific constructor
+  // QueueLst(argument) specifiers; // A stack obtained from a TraversableContainer
+  // QueueLst(argument) specifiers; // A stack obtained from a MappableContainer
 
-    QueueLst(const QueueLst<Data> &);
+  QueueLst(const TraversableContainer<Data> &container) : List<Data>(container){};
+  QueueLst(MappableContainer<Data> &&container) : List<Data>(std::move(container)){};
 
-    // Move constructor
-    // QueueLst(argument);
+  /* ************************************************************************ */
 
-    QueueLst(QueueLst<Data> &&) noexcept;
+  // Copy constructor
+  // QueueLst(argument);
 
-    /* ************************************************************************ */
+  QueueLst(const QueueLst<Data> &);
 
-    // Destructor
-    // ~QueueLst() specifier;
+  // Move constructor
+  // QueueLst(argument);
 
-    ~QueueLst() = default;
+  QueueLst(QueueLst<Data> &&) noexcept;
 
-    /* ************************************************************************ */
+  /* ************************************************************************ */
 
-    // Copy assignment
-    // type operator=(argument);
+  // Destructor
+  // ~QueueLst() specifier;
 
-    QueueLst &operator=(const QueueLst<Data> &);
+  ~QueueLst() = default;
 
-    // Move assignment
-    // type operator=(argument);
+  /* ************************************************************************ */
 
-    QueueLst &operator=(QueueLst<Data> &&) noexcept;
+  // Copy assignment
+  // type operator=(argument);
 
-    /* ************************************************************************ */
+  QueueLst &operator=(const QueueLst<Data> &);
 
-    // Comparison operators
-    // type operator==(argument) specifiers;
-    // type operator!=(argument) specifiers;
+  // Move assignment
+  // type operator=(argument);
 
-    bool operator==(const QueueLst<Data> &) const noexcept;
-    bool operator!=(const QueueLst<Data> &) const noexcept;
+  QueueLst &operator=(QueueLst<Data> &&) noexcept;
 
-    /* ************************************************************************ */
+  /* ************************************************************************ */
 
-    // Specific member functions (inherited from Queue)
+  // Comparison operators
+  // type operator==(argument) specifiers;
+  // type operator!=(argument) specifiers;
 
-    // type Head() specifiers; // Override Queue member (non-mutable version; must throw std::length_error when empty)
-    // type Head() specifiers; // Override Queue member (mutable version; must throw std::length_error when empty)
-    // type Dequeue() specifiers; // Override Queue member (must throw std::length_error when empty)
-    // type HeadNDequeue() specifiers; // Override Queue member (must throw std::length_error when empty)
-    // type Enqueue(argument) specifiers; // Override Queue member (copy of the value)
-    // type Enqueue(argument) specifiers; // Override Queue member (move of the value)
+  bool operator==(const QueueLst<Data> &) const noexcept;
+  bool operator!=(const QueueLst<Data> &) const noexcept;
 
-    inline const Data &Head() const override;
-    inline Data &Head() override;
-    inline void Dequeue() override;
-    inline Data HeadNDequeue() override;
-    inline void Enqueue(const Data &) override;
-    inline void Enqueue(Data &&) noexcept override;
+  /* ************************************************************************ */
 
-    /* ************************************************************************ */
+  // Specific member functions (inherited from Queue)
 
-    // Specific member function (inherited from ClearableContainer)
+  // type Head() specifiers; // Override Queue member (non-mutable version; must throw std::length_error when empty)
+  // type Head() specifiers; // Override Queue member (mutable version; must throw std::length_error when empty)
+  // type Dequeue() specifiers; // Override Queue member (must throw std::length_error when empty)
+  // type HeadNDequeue() specifiers; // Override Queue member (must throw std::length_error when empty)
+  // type Enqueue(argument) specifiers; // Override Queue member (copy of the value)
+  // type Enqueue(argument) specifiers; // Override Queue member (move of the value)
 
-    // using List<Data>::Clear;
-    // Forse void Clear() override?
-    using List<Data>::Clear;
+  inline const Data &Head() const override;
+  inline Data &Head() override;
+  inline void Dequeue() override;
+  inline Data HeadNDequeue() override;
+  inline void Enqueue(const Data &) override;
+  inline void Enqueue(Data &&) noexcept override;
 
-  protected:
-    // Auxiliary functions, if necessary!
-  };
+  /* ************************************************************************ */
 
-  /* ************************************************************************** */
+  // Specific member function (inherited from ClearableContainer)
+
+  // using List<Data>::Clear;
+  // Forse void Clear() override?
+  using List<Data>::Clear;
+
+protected:
+
+  // Auxiliary functions, if necessary!
+
+};
+
+/* ************************************************************************** */
 
 }
 

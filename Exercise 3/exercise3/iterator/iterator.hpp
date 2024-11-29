@@ -4,209 +4,220 @@
 
 /* ************************************************************************** */
 
-namespace lasd
-{
+namespace lasd {
 
-  /* ************************************************************************** */
+/* ************************************************************************** */
 
-  template <typename Data>
-  class Iterator
-  {
+template <typename Data>
+class Iterator {
 
-  private:
-    // ...
+private:
 
-  protected:
-    // ...
+  // ...
 
-  public:
-    // Destructor
-    // ~Iterator() specifiers
+protected:
 
-    virtual ~Iterator() = default;
+  // ...
 
-    /* ************************************************************************ */
+public:
 
-    // Copy assignment
-    // type operator=(argument); // Copy assignment of abstract is not possible.
+  // Destructor
+  // ~Iterator() specifiers
 
-    Iterator &operator=(const Iterator &) = delete;
+  virtual ~Iterator() = default;
 
-    // Move assignment
-    // type operator=(argument); // Move assignment of abstract types is not possible.
+  /* ************************************************************************ */
 
-    Iterator &operator=(Iterator &&) noexcept = delete;
+  // Copy assignment
+  // type operator=(argument); // Copy assignment of abstract is not possible.
 
-    /* ************************************************************************ */
+  Iterator &operator=(const Iterator &) = delete;
 
-    // Comparison operators
-    // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
-    // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
+  // Move assignment
+  // type operator=(argument); // Move assignment of abstract types is not possible.
 
-    bool operator==(const Iterator &) const noexcept = delete;
-    bool operator!=(const Iterator &) const noexcept = delete;
+  Iterator &operator=(Iterator &&) noexcept = delete;
 
-    /* ************************************************************************ */
+  /* ************************************************************************ */
 
-    // Specific member functions
+  // Comparison operators
+  // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
+  // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
 
-    // type operator*() specifiers; // (non-mutable version; concrete function must throw std::out_of_range when terminated)
+  bool operator==(const Iterator &) const noexcept = delete;
+  bool operator!=(const Iterator &) const noexcept = delete;
 
-    virtual const Data &operator*() const = 0;
+  /* ************************************************************************ */
 
-    // type Terminated() specifiers; // (concrete function should not throw exceptions)
+  // Specific member functions
 
-    virtual bool Terminated() const noexcept = 0;
-  };
+  // type operator*() specifiers; // (non-mutable version; concrete function must throw std::out_of_range when terminated)
 
-  /* ************************************************************************** */
+  virtual const Data &operator*() const = 0;
 
-  template <typename Data>
-  class MutableIterator : virtual public Iterator<Data>
-  {
-    // Must extend Iterator<Data>
+  // type Terminated() specifiers; // (concrete function should not throw exceptions)
 
-  private:
-    // ...
+  virtual bool Terminated() const noexcept = 0;
 
-  protected:
-    // ...
+};
 
-  public:
-    // Destructor
-    // ~MutableIterator() specifiers
+/* ************************************************************************** */
 
-    virtual ~MutableIterator() = default;
+template <typename Data>
+class MutableIterator : virtual public Iterator<Data>{
+  // Must extend Iterator<Data>
 
-    /* ************************************************************************ */
+private:
 
-    // Copy assignment
-    // type operator=(argument); // Copy assignment of abstract types is not possible.
+  // ...
 
-    MutableIterator &operator=(const MutableIterator &) = delete;
+protected:
 
-    // Move assignment
-    // type operator=(argument); // Move assignment of abstract types is not possible.
+  // ...
 
-    MutableIterator &operator=(MutableIterator &&) noexcept = delete;
+public:
 
-    /* ************************************************************************ */
+  // Destructor
+  // ~MutableIterator() specifiers
 
-    // Comparison operators
-    // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
-    // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
+  virtual ~MutableIterator() = default;
 
-    bool operator==(const MutableIterator &) const noexcept = delete;
-    bool operator!=(const MutableIterator &) const noexcept = delete;
+  /* ************************************************************************ */
 
-    /* ************************************************************************ */
+  // Copy assignment
+  // type operator=(argument); // Copy assignment of abstract types is not possible.
 
-    // Specific member functions
+  MutableIterator &operator=(const MutableIterator &) = delete;
 
-    // type operator*() specifiers; // (mutable version; concrete function must throw std::out_of_range when terminated)
+  // Move assignment
+  // type operator=(argument); // Move assignment of abstract types is not possible.
 
-    virtual Data &operator*() = 0;
-  };
+  MutableIterator &operator=(MutableIterator &&) noexcept = delete;
 
-  /* ************************************************************************** */
+  /* ************************************************************************ */
 
-  template <typename Data>
-  class ForwardIterator : virtual public Iterator<Data>
-  {
-    // Must extend Iterator<Data>
+  // Comparison operators
+  // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
+  // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
 
-  private:
-    // ...
+  bool operator==(const MutableIterator &) const noexcept = delete;
+  bool operator!=(const MutableIterator &) const noexcept = delete;
 
-  protected:
-    // ...
+  /* ************************************************************************ */
 
-  public:
-    // Destructor
-    // ~ForwardIterator() specifiers
+  // Specific member functions
 
-    virtual ~ForwardIterator() = default;
+  // type operator*() specifiers; // (mutable version; concrete function must throw std::out_of_range when terminated)
 
-    /* ************************************************************************ */
+  virtual Data &operator*() = 0;
 
-    // Copy assignment
-    // type operator=(argument); // Copy assignment of abstract types is not possible.
+};
 
-    ForwardIterator &operator=(const ForwardIterator &) = delete;
+/* ************************************************************************** */
 
-    // Move assignment
-    // type operator=(argument); // Move assignment of abstract types is not possible.
+template <typename Data>
+class ForwardIterator : virtual public Iterator<Data>{
+  // Must extend Iterator<Data>
 
-    ForwardIterator &operator=(ForwardIterator &&) noexcept = delete;
+private:
 
-    /* ************************************************************************ */
+  // ...
 
-    // Comparison operators
-    // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
-    // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
+protected:
 
-    bool operator==(const ForwardIterator &) const noexcept = delete;
-    bool operator!=(const ForwardIterator &) const noexcept = delete;
+  // ...
 
-    /* ************************************************************************ */
+public:
 
-    // Specific member functions
+  // Destructor
+  // ~ForwardIterator() specifiers
 
-    // type operator++() specifiers; // (concrete function must throw std::out_of_range when terminated)
+  virtual ~ForwardIterator() = default;
 
-    virtual ForwardIterator &operator++() = 0;
-  };
+  /* ************************************************************************ */
 
-  /* ************************************************************************** */
+  // Copy assignment
+  // type operator=(argument); // Copy assignment of abstract types is not possible.
 
-  template <typename Data>
-  class ResettableIterator : virtual public Iterator<Data>
-  {
-    // Must extend Iterator<Data>
+  ForwardIterator &operator=(const ForwardIterator &) = delete;
 
-  private:
-    // ...
+  // Move assignment
+  // type operator=(argument); // Move assignment of abstract types is not possible.
 
-  protected:
-    // ...
+  ForwardIterator &operator=(ForwardIterator &&) noexcept = delete;
 
-  public:
-    // Destructor
-    // ~ResettableIterator() specifiers
+  /* ************************************************************************ */
 
-    virtual ~ResettableIterator() = default;
+  // Comparison operators
+  // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
+  // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
 
-    /* ************************************************************************ */
+  bool operator==(const ForwardIterator &) const noexcept = delete;
+  bool operator!=(const ForwardIterator &) const noexcept = delete;
 
-    // Copy assignment
-    // type operator=(argument); // Copy assignment of abstract types is not possible.
+  /* ************************************************************************ */
 
-    ResettableIterator &operator=(const ResettableIterator &) = delete;
+  // Specific member functions
 
-    // Move assignment
-    // type operator=(argument); // Move assignment of abstract types is not possible.
+  // type operator++() specifiers; // (concrete function must throw std::out_of_range when terminated)
 
-    ResettableIterator &operator=(ResettableIterator &&) noexcept = delete;
+  virtual ForwardIterator &operator++() = 0;
 
-    /* ************************************************************************ */
+};
 
-    // Comparison operators
-    // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
-    // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
+/* ************************************************************************** */
 
-    bool operator==(const ResettableIterator &) const noexcept = delete;
-    bool operator!=(const ResettableIterator &) const noexcept = delete;
+template <typename Data>
+class ResettableIterator : virtual public Iterator<Data>{
+  // Must extend Iterator<Data>
 
-    /* ************************************************************************ */
+private:
 
-    // Specific member functions
+  // ...
 
-    // type Reset() specifiers; // (concrete function should not throw exceptions)
+protected:
 
-    virtual void Reset() noexcept = 0;
-  };
+  // ...
 
-  /* ************************************************************************** */
+public:
+
+  // Destructor
+  // ~ResettableIterator() specifiers
+
+  virtual ~ResettableIterator() = default;
+
+  /* ************************************************************************ */
+
+  // Copy assignment
+  // type operator=(argument); // Copy assignment of abstract types is not possible.
+
+  ResettableIterator &operator=(const ResettableIterator &) = delete;
+
+  // Move assignment
+  // type operator=(argument); // Move assignment of abstract types is not possible.
+
+  ResettableIterator &operator=(ResettableIterator &&) noexcept = delete;
+
+  /* ************************************************************************ */
+
+  // Comparison operators
+  // type operator==(argument) specifiers; // Comparison of abstract types is not possible.
+  // type operator!=(argument) specifiers; // Comparison of abstract types is not possible.
+
+  bool operator==(const ResettableIterator &) const noexcept = delete;
+  bool operator!=(const ResettableIterator &) const noexcept = delete;
+
+  /* ************************************************************************ */
+
+  // Specific member functions
+
+  // type Reset() specifiers; // (concrete function should not throw exceptions)
+
+  virtual void Reset() noexcept = 0;
+
+};
+
+/* ************************************************************************** */
 
 }
 
